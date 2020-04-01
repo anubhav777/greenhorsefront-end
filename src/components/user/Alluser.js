@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-
-class Allquestion extends Component {
+import {Link} from 'react-router-dom'
+class Alluser extends Component {
     state={
         bla:[],
-        disp:"none"
+        disp:'none'
     }
     componentWillMount(){
         // fetch('http://localhost:5000/tryuser')
       this.datafetcher()
-      
     }
     datafetcher=()=>{
         let token=localStorage.getItem('Token')
-        axios.get('http://localhost:5000/getallquestion/overall',{
+        axios.get('http://localhost:5000/getalluser',{
             headers:{
-                
                 'x-access-token':token
-
             }
         })
         
         .then(res =>{
             console.log(res.data)
             
+            this.setState({bla:res.data.data})
             this.setState({bla:res.data.data})
             const script=document.createElement("script")
 
@@ -39,7 +37,7 @@ class Allquestion extends Component {
     delete=(id)=>(e)=>{
         e.preventDefault()
         let token=localStorage.getItem('Token')
-        axios.delete(`http://localhost:5000/deletequestion/${id}`,{
+        axios.delete(`http://localhost:5000/deleteuser/${id}`,{
             headers:{
                 'x-access-token':token
             }
@@ -49,13 +47,8 @@ class Allquestion extends Component {
             this.datafetcher()
         })
     }
-    componentDidMount(){
-    
-        
-    }
     render() {
         return (
-            <div>
 <div className="content-wrapper">
   {/* Content Header (Page header) */}
   <section className="content-header">
@@ -86,30 +79,32 @@ class Allquestion extends Component {
             <table id="example2" className="table table-bordered table-hover">
               <thead>
                 <tr>
-                <th>#</th>
-                                              <th>URL</th>
-                                              <th>Status</th>
-                                              <th>Date</th>
-                                              <th style={{display:this.state.disp}}>User</th>
-
-                                              <th style={{display:this.state.disp}}>Delete</th>
+                                      <th>#</th>
+                                      <th>Full Name</th>
+                                      <th>Email</th>
+                                      <th>Phone</th>
+                                      <th>Address</th>
+                                      <th>Usertype</th>
+                                      <th style={{display:this.state.disp}}>Edit</th>
+                                      <th style={{display:this.state.disp}}>Delete</th>
                 </tr>
               </thead>
               <tbody>
               {this.state.bla.map((val)=>{
-                                                  return(
-                                                      <tr>
-                                                          <th scope="row">{val.id}</th>
-                                                  <td>{val.linkname}</td>
-                                                  <td>{val.status}</td>
-                                                  <td>{val.date}</td>
-                                                  <td style={{display:this.state.disp}}>{val.user}</td>
-                                                  
-                                                  <td style={{display:this.state.disp}}><button className="btn btn-block btn-danger" onClick={this.delete(val.id)}>Delete</button></td>
-        
-                                                      </tr>
-                                                  )
-                                              })}
+                                          return(
+                                              <tr>
+                                                  <th scope="row">{val.id}</th>
+                                          <td>{val.fullname}</td>
+                                          <td>{val.email}</td>
+                                          <td>{val.phone}</td>
+                                          <td>{val.address}</td>
+                                          <td>{val.usertype}</td>
+                                          <td style={{display:this.state.disp}}> <Link to={`/edituser?page=${val.id}`} ><button className="btn btn-block btn-info">Edit</button></Link></td>
+                                          <td style={{display:this.state.disp}}><button className="btn btn-block btn-danger" onClick={this.delete(val.id)}>Delete</button></td>
+
+                                              </tr>
+                                          )
+                                      })}
               </tbody>
             </table>
           </div>
@@ -126,10 +121,9 @@ class Allquestion extends Component {
   {/* /.content */}
 </div>
 
-            </div>
+
         );
     }
 }
 
-
-export default Allquestion;
+export default Alluser;

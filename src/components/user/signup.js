@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Formik,ErrorMessage} from 'formik'
-import ValidationSchema from './Validation'
 import {Redirect} from 'react-router-dom'
 import * as Yup from 'yup'
 class signup extends Component {

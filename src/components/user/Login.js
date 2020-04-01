@@ -14,7 +14,7 @@ class Login extends Component {
     }
     render() {
         if(this.state.redirect){
-            return(<Redirect to={'/file'}/>)
+            return(<Redirect to={'/allquestion'}/>)
         }
         else{
         return (
@@ -46,46 +46,66 @@ class Login extends Component {
                 {({values,handleChange,handleBlur,handleSubmit})=>(
 
                     
-        <div className="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
-        <div className="wrapper wrapper--w780">
-            <div className="card card-4">
-                <div className="card-body">
-                    <h2 className="title">Registration Form</h2>
-                    <form onSubmit={handleSubmit}>
-                 
-                          <div className="input-group">
-                             <div className="col-2">
-                                <div className="input-group">
-                                      <label className="label">Email</label>
-                                    <input className="input--style-4" style={wdth} type="text" name="email" value={values.name}
+                <div className="hold-transition login-page">
+                <div className="login-box">
+                    <div className="login-logo">
+                    <b>Green</b>Horse
+                    </div>
+                    {/* /.login-logo */}
+                    <div className="card">
+                    <div className="card-body login-card-body">
+                        <p className="login-box-msg">Sign in to start your session</p>
+                        <form onSubmit={handleSubmit}>
+                        <div className="input-group mb-3">
+                            <input type="email" className="form-control" placeholder="Email"  name="email" value={values.name}
                             onChange={handleChange}
                             onBlur={handleBlur}/>
                              <ErrorMessage style={err} name="email" component="div"/>
-                                </div>
+                            <div className="input-group-append">
+                            <div className="input-group-text">
+                                <span className="fas fa-envelope" />
+                            </div>
                             </div>
                         </div>
-                       
-                      <div className="input-group">
-                             <div className="col-2">
-                                <div className="input-group">
-                                    <label className="label">Password</label>
-                                    <input style={wdth} className="input--style-4" type="password" name="password" value={values.name}
+                        <div className="input-group mb-3">
+                            <input type="password" className="form-control" placeholder="Password" name="password" value={values.name}
                             onChange={handleChange}
                             onBlur={handleBlur}/>
                             <ErrorMessage style={err} name="password" component="div"/>
-                                </div>
+                            <div className="input-group-append">
+                            <div className="input-group-text">
+                                <span className="fas fa-lock" />
+                            </div>
                             </div>
                         </div>
-                        <div className="p-t-15">
-                            <button className="btn btn--radius-2 btn--blue" type="submit" >Login</button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <div className="row">
+                            <div className="col-8">
+                            <div className="icheck-primary">
+                                <input type="checkbox" id="remember" />
+                                <label htmlFor="remember">
+                                Remember Me
+                                </label>
+                            </div>
+                            </div>
+                            {/* /.col */}
+                            <div className="col-4">
+                            <button type="submit" className="btn btn-primary btn-block">Sign In</button>
+                            </div>
+                            {/* /.col */}
+                        </div>
+                        </form>
 
-                   
+                        {/* /.social-auth-links */}
+                       
+                        <p className="mb-0">
+                        <a href="?" className="text-center">Register a new membership</a>
+                        </p>
+                    </div>
+                    {/* /.login-card-body */}
+                    </div>
+                </div>
+                </div>
+                             
                 )}
 
             </Formik>
@@ -97,7 +117,5 @@ class Login extends Component {
 const err={
     color:"red"
 }
-const wdth={
-    width:'150%'
-}
+
 export default Login;
