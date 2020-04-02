@@ -11,6 +11,9 @@ import Alluser from './components/user/Alluser'
 import Edituser from './components/user/Edituser'
 import Fileupload from './components/Files/Fileupload'
 import Allfile from './components/Files/Allfile'
+import Editfile from './components/Files/Editfile'
+import Resetpassword from './components/user/Resetpassword'
+import Confirmpassword from './components/user/Confirmpassword'
 
 // import './App.css';
 // import './css/main.css'
@@ -21,7 +24,7 @@ import Allquestion from './components/questions/Allquestion'
 class App extends Component {
   render() {
     return (
-      <div>
+    
         <Router>
           <Route exact path="/" render={(props)=>(
             <React.Fragment>
@@ -33,6 +36,8 @@ class App extends Component {
         
         <Switch>
           <Route path='/login'><Login/></Route>
+          <Route path='/reset'><Resetpassword/></Route>
+          <Route path='/confirm'><Confirmpassword/></Route>
 
           <Route path='/allquestion' render={(props)=>(
             <React.Fragment>
@@ -91,10 +96,20 @@ class App extends Component {
           )}>
 
           </Route>
+          <Route exact path='/editfile' render={(props)=>(
+            <React.Fragment>
+              <Header/>
+              <Menu/>
+              <Editfile/>
+              <Footer/>
+            </React.Fragment>
+          )}>
+
+          </Route>
         </Switch>
         
         </Router>
-      </div>
+     
     );
   }
 }

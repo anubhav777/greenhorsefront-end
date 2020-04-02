@@ -139,7 +139,7 @@ class Allfile extends Component {
                                                         <td>{val.user}</td>
                                                         
                                                         <td style={{display:this.state.disp}}><Link to={`/updatefile?page=${val.id}`}><button className="btn btn-block btn-info">Edit</button></Link></td>
-                                                        <td style={{display:this.state.disp}}><button className="btn btn--radius-2 btn--bluebtn btn-block btn-danger" onClick={this.delete(val.id)}>Delete</button></td>
+                                                        <td style={{display:this.state.disp}}><button className="btn btn-block btn-danger" onClick={this.delete(val.id)}>Delete</button></td>
                 
                                                       </tr>
                                                   )

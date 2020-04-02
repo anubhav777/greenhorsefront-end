@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import Percent from './Percent'
 
 class Fileupload extends Component {
   state={
@@ -8,7 +9,8 @@ class Fileupload extends Component {
     filename:"Please upload file",
     wordcount:"",
     filedisplay:"",
-    diplsy:true
+    diplsy:true,
+    percent:0
     
 }
 uploadstaus=(e)=>{
@@ -23,7 +25,7 @@ uploadurl=(e)=>{
 uploadfile= async (e)=>{
     e.preventDefault();
     let token= localStorage.getItem('Token')
-    this.setState({diplsy:false})
+    
     const formdata = new FormData()
     for(const key of Object.keys(this.state.file)){
         formdata.append("file",this.state.file[key])
@@ -41,6 +43,9 @@ uploadfile= async (e)=>{
                 'Content-Type':'multipart/form-data',
                 'x-access-token':token
             },
+            onUploadProgress: ProgressEvent =>{
+              this.setState({percent:(parseInt(Math.round((ProgressEvent.loaded * 100)/ProgressEvent.total)))})
+            }
             
         })
         .then( res =>{
@@ -48,6 +53,7 @@ uploadfile= async (e)=>{
             let newwordcount=`Total: ${res.data.wordcount} Word Count`
             if (res.data.wordcount!== undefined){
               console.log(res.data.wordcount)
+              this.setState({diplsy:false})
               this.setState({wordcount:newwordcount})
             }
             
@@ -110,7 +116,9 @@ uploadfile= async (e)=>{
                     
                   </div>
                 </div>
-
+          <div  style={this.state.diplsy ?  {display:'block'} :{display:'none'} }>
+            <Percent percent={this.state.percent}/>
+          </div>
                
               </div>
               <h1 style={this.state.diplsy ? {display:'none'} :  {display:'block',color:'green'}}>{this.state.wordcount}</h1>

@@ -4,13 +4,16 @@ import axios from 'axios'
 class Allquestion extends Component {
     state={
         bla:[],
-        disp:"none"
+        disp:"none",
+        runscript:false
     }
     componentWillMount(){
         // fetch('http://localhost:5000/tryuser')
       this.datafetcher()
-      
+
+    
     }
+
     datafetcher=()=>{
         let token=localStorage.getItem('Token')
         axios.get('http://localhost:5000/getallquestion/overall',{
@@ -21,16 +24,37 @@ class Allquestion extends Component {
             }
         })
         
-        .then(res =>{
+        .then((res) =>{
             console.log(res.data)
             
             this.setState({bla:res.data.data})
             const script=document.createElement("script")
+             
+            script.src='../../js/table.js'
+            script.async=true;
 
-        script.src='../../js/table.js'
-        script.async=true;
+            document.body.appendChild(script)
+          
+            if (res.data.user==="admin"){
+                this.setState({disp:""})
+            }
+        })
+    }
+    datfetch=()=>{
+      let token=localStorage.getItem('Token')
+        axios.get('http://localhost:5000/getallquestion/overall',{
+            headers:{
+                
+                'x-access-token':token
 
-        document.body.appendChild(script)
+            }
+        })
+        
+        .then((res) =>{
+            console.log(res.data)
+            
+            this.setState({bla:res.data.data})
+            
             if (res.data.user==="admin"){
                 this.setState({disp:""})
             }
@@ -47,6 +71,7 @@ class Allquestion extends Component {
         .then(res =>{
             console.log(res.data)
             this.datafetcher()
+           
         })
     }
     componentDidMount(){
@@ -96,7 +121,7 @@ class Allquestion extends Component {
                 </tr>
               </thead>
               <tbody>
-              {this.state.bla.map((val)=>{
+              {this.state.bla.length > 1 ? (this.state.bla.map((val)=>{
                                                   return(
                                                       <tr>
                                                           <th scope="row">{val.id}</th>
@@ -109,7 +134,7 @@ class Allquestion extends Component {
         
                                                       </tr>
                                                   )
-                                              })}
+                                                  })) : <tr>'No display'</tr>}
               </tbody>
             </table>
           </div>
