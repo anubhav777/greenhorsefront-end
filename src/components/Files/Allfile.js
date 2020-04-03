@@ -125,10 +125,10 @@ class Allfile extends Component {
                 </tr>
               </thead>
               <tbody>
-              {this.state.bla.map((val)=>{
+              {this.state.bla.map((val,i)=>{
                                                   return(
                                                       <tr>
-                                                        <th scope="row">{val.id}</th>
+                                                        <th scope="row">{i+1}</th>
                                                         <td><img style={img_wdth} src={process.env.PUBLIC_URL+"/word.jpg"}/></td>
                                                         <td>{val.filename}</td>
                                                         <td><button style={btn} onClick={this.dowloadfile(val.filename,val.user)}><i className="fa fa-download"></i></button></td>
@@ -136,8 +136,7 @@ class Allfile extends Component {
                                                         <td>{val.wordcount}</td>
                                                         <td>{val.status}</td>
                                                         <td>{val.date}</td>
-                                                        <td>{val.user}</td>
-                                                        
+                                                        <td style={{display:this.state.disp}}>{val.user}</td>
                                                         <td style={{display:this.state.disp}}><Link to={`/updatefile?page=${val.id}`}><button className="btn btn-block btn-info">Edit</button></Link></td>
                                                         <td style={{display:this.state.disp}}><button className="btn btn-block btn-danger" onClick={this.delete(val.id)}>Delete</button></td>
                 

@@ -14,6 +14,8 @@ import Allfile from './components/Files/Allfile'
 import Editfile from './components/Files/Editfile'
 import Resetpassword from './components/user/Resetpassword'
 import Confirmpassword from './components/user/Confirmpassword'
+import Verifier from './components/user/Verifier'
+import Try from './components/questions/Try'
 
 // import './App.css';
 // import './css/main.css'
@@ -38,6 +40,8 @@ class App extends Component {
           <Route path='/login'><Login/></Route>
           <Route path='/reset'><Resetpassword/></Route>
           <Route path='/confirm'><Confirmpassword/></Route>
+          <Route path='/verifier'><Verifier/></Route>
+          
 
           <Route path='/allquestion' render={(props)=>(
             <React.Fragment>
@@ -101,6 +105,16 @@ class App extends Component {
               <Header/>
               <Menu/>
               <Editfile/>
+              <Footer/>
+            </React.Fragment>
+          )}>
+
+          </Route>
+          <Route exact path='/try' render={(props)=>(
+            <React.Fragment>
+              <Header/>
+              <Menu/>
+              <Try/>
               <Footer/>
             </React.Fragment>
           )}>

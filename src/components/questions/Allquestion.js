@@ -121,10 +121,10 @@ class Allquestion extends Component {
                 </tr>
               </thead>
               <tbody>
-              {this.state.bla.length > 1 ? (this.state.bla.map((val)=>{
+              {this.state.bla.length >= 1 ? (this.state.bla.map((val,i)=>{
                                                   return(
                                                       <tr>
-                                                          <th scope="row">{val.id}</th>
+                                                          <th scope="row">{i+1}</th>
                                                   <td>{val.linkname}</td>
                                                   <td>{val.status}</td>
                                                   <td>{val.date}</td>

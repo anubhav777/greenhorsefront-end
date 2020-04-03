@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Formik,ErrorMessage} from 'formik'
 import {Redirect} from 'react-router-dom'
 import * as Yup from 'yup'
+import axios from 'axios'
 class signup extends Component {
     state={
         address:"",
@@ -74,6 +75,20 @@ class signup extends Component {
             if (data.status === 200){
               console.log('hi')
               this.setState({redirect:true})
+              let new_email=JSON.stringify({
+                'email':values.email
+              })
+              axios.post('http://localhost:5000/verification',new_email,{
+                headers: {
+              
+                  // 'Accept': 'application/json, text/plain, */*',
+                  "Content-Type": "application/json",
+                  
+                            }
+              })
+              .then(res =>{
+                console.log(res.data)
+              })
             }
 
           

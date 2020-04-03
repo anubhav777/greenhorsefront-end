@@ -49,16 +49,22 @@ uploadfile= async (e)=>{
             
         })
         .then( res =>{
+          
             console.log(res.data)
             let newwordcount=`Total: ${res.data.wordcount} Word Count`
             if (res.data.wordcount!== undefined){
               console.log(res.data.wordcount)
               this.setState({diplsy:false})
               this.setState({wordcount:newwordcount})
+              setTimeout(()=>{this.setState({percent:0})},2000)
+            }
+            else{
+              setTimeout(()=>{this.setState({percent:0})},500)
             }
             
             this.setState({url:'',file:'',filedisplay:''})
         })
+       
       
     }
     catch(err){

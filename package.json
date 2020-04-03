@@ -12,10 +12,12 @@
     "js-file-download": "^0.4.10",
     "noty": "^3.2.0-beta",
     "react": "^16.13.1",
+    "react-data-table-component": "^6.3.5",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "require": "^2.4.20",
+    "styled-components": "^5.0.1",
     "yup": "^0.28.3"
   },
   "scripts": {
