@@ -12,12 +12,17 @@ class signup extends Component {
         phone:"",
         usertype:"staff",
         redirect:false,
-        disable:true
+        disable:true,
+        filename:'',
+        filedisplay:''
        
 
     }
     disable_func=(e)=>{
         this.setState({disable:!this.state.disable})
+    }
+    uploadfile=(e)=>{
+      this.setState({filename:e.target.files,filedisplay:e.target.files[0].name})
     }
     render() {
       if(this.state.redirect){
@@ -58,22 +63,28 @@ class signup extends Component {
         
            })} onSubmit={(values)=>{
             console.log(values)
+            let formdata=new FormData()
+
+            formdata.append('file',this.state.filename[0])
+            formdata.append('fullname',values.fullname)
+            formdata.append('email',values.email)
+            formdata.append('address',values.address)
+            formdata.append('phone',values.phone)
+            formdata.append('password',values.password)
+            formdata.append('usertype','staff')
           console.log(JSON.stringify(values))
-          fetch('http://localhost:5000/signup', {
-            method: 'POST',
+          axios.post('http://localhost:5000/signup',formdata, {
+           
             headers: {
               
               // 'Accept': 'application/json, text/plain, */*',
-              "Content-Type": "application/json",
+              'Content-Type':'multipart/form-data',
               
-                        },
-            body:JSON.stringify(values),
-            
-            
-          })
-          .then(data => {
-            if (data.status === 200){
-              console.log('hi')
+                        }})
+          .then(res => {
+            console.log(res.data)
+            if (res.data.status === 200){
+             
               this.setState({redirect:true})
               let new_email=JSON.stringify({
                 'email':values.email
@@ -173,6 +184,15 @@ class signup extends Component {
             </div>
           </div>
         </div>
+        <div className="form-group">
+                 
+                  <div className="input-group">
+                    <div className="custom-file">
+                      <input type="file" className="custom-file-input" name="file"  id="try" onChange={this.uploadfile} />
+                      <label className="custom-file-label" htmlFor="exampleInputFile">{this.state.filedisplay.length < 1 ? "Enter Your Picture here" :(this.state.filedisplay)}</label>
+                    </div>
+                    </div>
+                    </div>
         <div className="row">
           <div className="col-8">
             <div className="icheck-primary">

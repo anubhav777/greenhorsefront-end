@@ -1,6 +1,32 @@
 import React, { Component } from 'react';
+import axios from 'axios'
+
 
 class Menu extends Component {
+  state={
+    fullname:""
+  }
+  componentWillMount(){
+    let uid=localStorage.getItem('Dejavu')
+    this.getuser(uid)
+  }
+  componentDidMount(){
+    var dataImage = localStorage.getItem('Profile');
+    let bannerImg = document.getElementById('tableBanner');
+    bannerImg.src = "data:image/png;base64," + dataImage;
+}
+getuser=(uid)=>{
+  let token=localStorage.getItem('Token')
+    axios.get(`http://localhost:5000/getuser/${uid}`,{
+      headers:{
+        'x-access-token':token
+      }
+    })
+    .then(res=>{
+      console.log(res.data)
+      this.setState({fullname:res.data.fullname})
+    })
+}
     render() {
         return (
             <div>
@@ -15,10 +41,10 @@ class Menu extends Component {
     {/* Sidebar user panel (optional) */}
     <div className="user-panel mt-3 pb-3 mb-3 d-flex">
       <div className="image">
-        <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2"  />
+        <img src="" id="tableBanner" style={imgwidth} className="img-circle elevation-2"  />
       </div>
       <div className="info">
-        <a href="#" className="d-block">Alexander Pierce</a>
+        <a href="#" className="d-block">{this.state.fullname}</a>
       </div>
     </div>
     {/* Sidebar Menu */}
@@ -561,6 +587,10 @@ class Menu extends Component {
             </div>
         );
     }
+}
+const imgwidth={
+  width:"2.1rem",
+  height:"2.1rem"
 }
 
 export default Menu;

@@ -87,11 +87,8 @@ class Try extends Component {
                   borderRightWidth: '1px',
                   borderRightColor: defaultThemes.default.divider.default,
                   fontSize:'16px',
-               
-                
-                 
                   padding:'12px',
-                  fontFamilySansSerif: 'Source Sans Pro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbo',
+                  fontFamilySansSerif11: 'Source Sans Pro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbo',
                   
                   
                 },

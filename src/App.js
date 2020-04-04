@@ -16,6 +16,9 @@ import Resetpassword from './components/user/Resetpassword'
 import Confirmpassword from './components/user/Confirmpassword'
 import Verifier from './components/user/Verifier'
 import Try from './components/questions/Try'
+import Tryimage from './components/user/Tryimage'
+import Trypicture from './components/user/Trypicture'
+import Profile from './components/user/Profile'
 
 // import './App.css';
 // import './css/main.css'
@@ -41,7 +44,8 @@ class App extends Component {
           <Route path='/reset'><Resetpassword/></Route>
           <Route path='/confirm'><Confirmpassword/></Route>
           <Route path='/verifier'><Verifier/></Route>
-          
+          <Route path='/tryimg'><Tryimage/></Route>
+          <Route path='/pics'><Trypicture/></Route>
 
           <Route path='/allquestion' render={(props)=>(
             <React.Fragment>
@@ -116,6 +120,17 @@ class App extends Component {
               <Menu/>
               <Try/>
               <Footer/>
+            </React.Fragment>
+          )}>
+
+          </Route>
+          <Route exact path='/profile' render={(props)=>(
+            <React.Fragment>
+              <Header/>
+                <Menu/>
+                <Profile/>
+                <Footer/>
+            
             </React.Fragment>
           )}>
 

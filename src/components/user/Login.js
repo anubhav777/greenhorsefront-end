@@ -3,6 +3,7 @@ import {Formik,ErrorMessage} from 'formik'
 import ValidationSchema from './Validation'
 import {Redirect} from 'react-router-dom'
 import base64 from 'base-64'
+import axios from 'axios'
 
 
 
@@ -12,9 +13,24 @@ class Login extends Component {
         password:"",
         redirect:false
     }
+    converbase=(url)=>{
+        const reader= new FileReader()
+        reader.readAsDataURL(url)
+        reader.onloadend = function(){
+            let base64data=reader.result
+            let new_split=base64data.split(",",2)
+            // let tryop=base64data.replace(/^data:image\/(png|jpeg);base64,/, "")
+            // console.log(tryop,new_split[1])
+            let new_image=new_split[1]
+            localStorage.setItem("Profile",new_image)
+            
+
+        }
+        setTimeout(()=>{this.setState({redirect:true})},50)
+    }
     render() {
         if(this.state.redirect){
-            return(<Redirect to={'/allquestion'}/>)
+            return(<Redirect to={'/try'}/>)
         }
         else{
         return (
@@ -23,21 +39,35 @@ class Login extends Component {
                 let username=values.email
                 let password=values.password
                 const auth=  btoa(username + ':' + password)
-                fetch('http://localhost:5000/login',{
+                axios.get('http://localhost:5000/login',{
                     headers:{
                         'Authorization':`Basic ${auth}`,
                         "Content-Type": "application/json"
                     }
 
                 })
-                .then(re=>re.json())
+            
                 .then(res=>{
-                    console.log(res)
-                    
-                    if(res.status === 'sucess'){
-                        localStorage.setItem('Token',res.token)
-                        localStorage.setItem('Usertype',res.usertype)
-                        this.setState({redirect:true})
+                    console.log(res.data)
+                    console.log(res.data.filepath)
+                    if(res.data.status === 'sucess'){
+                        const path=res.data.filepath
+                        axios.get(`http://localhost:5000/download/${path}`,{
+                            headers:{
+                                'Access-Control-Allow-Origin':'*',
+                                'Access-Control-Expose-Headers': '*'
+                            },
+                            responseType:'blob'
+                        })
+                        .then(response  =>{
+
+                            this.converbase(response.data)
+                        })
+                        
+                        localStorage.setItem('Token',res.data.token)
+                        localStorage.setItem('Usertype',res.data.usertype)
+                        localStorage.setItem('Dejavu',res.data.userid)
+                       
                     }
                     
                 })
