@@ -62,8 +62,7 @@ class Userprofile extends Component {
                                     
                                 </p>
                                 <hr />
-                                <strong><i className="far fa-file-alt mr-1" /> Notes</strong>
-                                <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                             
                                 </div>
                                 {/* /.card-body */}
                             </div>

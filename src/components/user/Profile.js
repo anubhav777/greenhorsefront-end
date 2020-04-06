@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import Userprofile from './childclasses/Userprofile'
-import Userdetails from './childclasses/Userdetail'
-import Userdetail from './childclasses/Userdetail';
+import Userdetail from './childclasses/Userdetail'
+import Adminprofile from './childclasses/Adminprofile';
 class Profile extends Component {
     state={
         userdata:[],
         question:null,
         file:null,
-        imgsrc:""
+        imgsrc:"",
+        admin:true
     }
     componentWillMount(){
         let uid=localStorage.getItem('Dejavu')
@@ -26,8 +27,11 @@ class Profile extends Component {
       }
     })
     .then(res=>{
-      console.log(res.data)
+      console.log(res.data.usertype)
       this.setState({userdata:res.data})
+      if(res.data.usertype === 'admin'){
+          this.setState({admin:true})
+      }
     })
     }
     getquestion=(token)=>{
@@ -81,8 +85,14 @@ class Profile extends Component {
                     <section className="content">
                         <div className="container-fluid">
                         <div className="row">
-                            <Userprofile userdata={this.state.userdata} file={this.state.file} question={this.state.question} imgsrc={this.state.imgsrc}/>
+                        {this.state.admin ?<Adminprofile  userdata={this.state.userdata} imgsrc={this.state.imgsrc}/>:<Userprofile   userdata={this.state.userdata} file={this.state.file} question={this.state.question} imgsrc={this.state.imgsrc}/>
+                            }
+                            
+                           
+
+                           
                             <Userdetail/>
+
                             {/* /.col */}
                         </div>
                         {/* /.row */}

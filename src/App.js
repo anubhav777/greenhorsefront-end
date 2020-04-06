@@ -19,7 +19,9 @@ import Try from './components/questions/Try'
 import Tryimage from './components/user/Tryimage'
 import Trypicture from './components/user/Trypicture'
 import Profile from './components/user/Profile'
-
+import Tryfile from './components/Files/Tryfile'
+import Overall from './components/Files/Overall'
+import Tryalluser from './components/user/Tryalluser'
 // import './App.css';
 // import './css/main.css'
 // import './css/style2.css'
@@ -46,6 +48,7 @@ class App extends Component {
           <Route path='/verifier'><Verifier/></Route>
           <Route path='/tryimg'><Tryimage/></Route>
           <Route path='/pics'><Trypicture/></Route>
+          <Route path='/tryalluser'><Tryalluser/></Route>
 
           <Route path='/allquestion' render={(props)=>(
             <React.Fragment>
@@ -135,6 +138,17 @@ class App extends Component {
           )}>
 
           </Route>
+          <Route exact path='/tryfile' render={(props)=>(
+            <React.Fragment>
+              <Header/>
+              <Menu/>
+              <Tryfile/>
+              <Footer/>
+            </React.Fragment>
+          )}>
+
+          </Route>
+          <Route path='/overall'><Overall/></Route>
         </Switch>
         
         </Router>

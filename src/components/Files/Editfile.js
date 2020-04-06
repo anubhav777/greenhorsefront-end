@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-
+import axios from 'axios';
+import DataTable,{defaultThemes} from 'react-data-table-component';
+import styled from 'styled-components'
 class Editfile extends Component {
     state={
         bla:[],
@@ -12,8 +13,23 @@ class Editfile extends Component {
         
         this.userftecher()
         this.datafetcher()
+       
+        if(window.location.href.indexOf("page=") != -1){
+          let url=window.location.href
+          let newsplit=url.split('=',2)
+          let newid=Number(newsplit[1])
+          console.log('hi')
+         this.generatedata(newid)
+        }
+        else{
+          console.log('bye')
+        }
+       
 
        
+    }
+    componentDidMount(){
+      
     }
     datafetcher=()=>{
         let token=localStorage.getItem('Token')
@@ -29,51 +45,29 @@ class Editfile extends Component {
             console.log(res.data)
             
             this.setState({alldata:res.data.data})
-            const script=document.createElement("script")
-
-            script.src='../../js/table.js'
-            script.async=true;
-    
-            document.body.appendChild(script)
+          
+          
             if (res.data.user==="admin"){
                 this.setState({disp:"",width:"150%"})
             }
         })
     }
     getdata=(id)=>(e)=>{
-        e.preventDefault()
-        let newid=id
-        
-        console.log(newid)
-        let token= localStorage.getItem('Token')
-        axios.get(`http://localhost:5000/getfile/${newid}`,{
-            headers:{
-                'Content-Type':'application/json',
-                'x-access-token':token
+     e.preventDefault()
+      this.generatedata(id)
+    }
+    generatedata=(id)=>{
+      let token= localStorage.getItem('Token')
+      axios.get(`http://localhost:5000/getfile/${id}`,{
+          headers:{
+              'Content-Type':'application/json',
+              'x-access-token':token
 
-            }
-        })
-        .then(res =>{
-            console.log(res.data)
-            let newres=res.data
-            let keys=Object.keys(newres)
-            let values=Object.values(newres)
-            this.setState({bla:res.data})
-            // for (const key of Object.keys[newres]){
-            //     console.log(key)
-
-            // }
-            // for (const i in keys.length){
-            //     console.log(keys[i])
-            // }
-            // for (let i = 0; i < keys.length; i++) {
-            //    this.setState({[keys[i]]:values[i]})
-            //     // console.log(values[i])
-            // }
-
-            //  console.log(keys[2])
-            // this.setState({[res.data]:newres.address})
-        })
+          }
+      })
+      .then(res =>{
+        this.setState({bla:res.data})
+      })
     }
     userftecher=()=>{
         let token=localStorage.getItem('Token')
@@ -147,6 +141,77 @@ class Editfile extends Component {
         console.log('hi')
     }
     render() {
+      const pg=10
+      const customStyles = {
+        header: {
+            style: {
+              minHeight: '56px',
+            },
+          },
+          headRow: {
+            style: {
+              borderTopStyle: 'solid',
+              borderTopWidth: '1px',
+              borderTopColor: defaultThemes.default.divider.default,
+            },
+          },
+          headCells: {
+            style: {
+              '&:not(:last-of-type)': {
+                borderRightStyle: 'solid',
+                borderRightWidth: '1px',
+                borderRightColor: defaultThemes.default.divider.default,
+                fontSize:'16px',
+                fontFamilySansSerif11: 'Source Sans Pro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbo',
+              
+              },
+            },
+          },
+          cells: {
+            style: {
+              '&:not(:last-of-type)': {
+                borderRightStyle: 'solid',
+                borderRightWidth: '1px',
+                borderRightColor: defaultThemes.default.divider.default,
+                fontSize:'16px',
+                fontFamilySansSerif11: 'Source Sans Pro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbo',
+              
+                
+              },
+            },
+          },
+        };
+      
+      const data=this.state.alldata
+      const column=[
+        {
+          name:'File Name',
+          selector:'filename',
+          sort:true
+        },
+        {
+          name:'User Name',
+          selector:'user',
+          sort:true
+        },
+        {
+          selector:(obj)=><button className="btn btn-block btn-info" onClick={this.getdata(obj.id)}><i className="fas fa-eye" /></button>,
+          ignoreRowClick:true,
+          allowOverflow:true,
+          button:true,
+          width: '100px',
+          padding:'12px'
+        },
+        {
+        selector:(obj)=><button className="btn btn-block btn-danger" onClick={this.delete(obj.id)}><i className="fas fa-trash" /></button>,
+        ignoreRowClick:true,
+        allowOverflow:true,
+        button:true,
+        width: '100px',
+        padding:'12px'
+        }
+
+      ]
         return (
 <div className="content-wrapper">
   {/* Content Header (Page header) */}
@@ -242,32 +307,17 @@ class Editfile extends Component {
             </div>
           </div>
           <div className="card-body p-1">
-            <table  id="example2" className="table table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th>File Name</th>
-                  <th>Username</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-              {this.state.alldata.map((val)=>{
-                                                  return(
-                                                      <tr>
-                                                       
-                                                        <td>{val.filename}</td>
-                                                        <td>{val.user}</td>
-                                                        
-                                                        <td style={{display:this.state.disp}}><button className="btn btn-block btn-info" onClick={this.getdata(val.id)}><i className="fas fa-eye" /></button></td>
-                                                        <td style={{display:this.state.disp}}><button className="btn btn-block btn-danger" onClick={this.delete(val.id)}><i className="fas fa-trash" /></button></td>
-                
-                                                      </tr>
-                                                  )
-                                              })}
-               
-                  </tbody>
-            </table>
+            
+             <DataTable
+             className="table table-bordered table-hover"
+             data={data}
+             columns={column}
+             pagination
+             noHeader
+             paginationPerPage={pg}
+             customStyles={customStyles}
+             />
+          
           </div>
           {/* /.card-body */}
         </div>

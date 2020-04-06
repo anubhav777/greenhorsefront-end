@@ -11,12 +11,16 @@ class Userdetail extends Component {
         phone:"",
         id:"",
         usertype:"",
-        redirect:false
+        redirect:false,
+        disable:true
        
 
     }
     componentWillMount(){
         this.getdata()
+    }
+    disable_func=(e)=>{
+        this.setState({disable:!this.state.disable})
     }
     getdata=()=>{
         let url=window.location.href
@@ -61,8 +65,7 @@ class Userdetail extends Component {
             "address":this.state.address,
             "fullname":this.state.fullname,
             "phone":this.state.phone,
-            "usertype":this.state.usertype,
-            "password":this.state.password
+        
         }
         fetch(`http://localhost:5000/updateuser/${this.state.id}`, {
             method: 'PUT',
@@ -114,7 +117,7 @@ class Userdetail extends Component {
                                         <div className="form-group row">
                                         <label htmlFor="inputName" className="col-sm-2 col-form-label">UserName</label>
                                         <div className="col-sm-10">
-                                            <input type="email" className="form-control" placeholder="Username" name="fullname" id="fullname" value={this.state.fullname}
+                                            <input type="text" className="form-control" placeholder="Username" name="fullname" id="fullname" value={this.state.fullname}
                                       onChange={this.valuechange}
                                      />
                                         </div>
@@ -145,14 +148,14 @@ class Userdetail extends Component {
                                         <div className="offset-sm-2 col-sm-10">
                                             <div className="checkbox">
                                             <label>
-                                                <input type="checkbox" /> I agree to the <a href="#">terms and conditions</a>
+                                                <input type="checkbox" onChange={this.disable_func}/> I agree to the <a href="#">terms and conditions</a>
                                             </label>
                                             </div>
                                         </div>
                                         </div>
                                         <div className="form-group row">
                                         <div className="offset-sm-2 col-sm-10">
-                                            <button type="submit" className="btn btn-danger">Submit</button>
+                                            <button type="submit"  disabled={this.state.disable ? true : false} className="btn btn-danger">Submit</button>
                                         </div>
                                         </div>
                                     </form>

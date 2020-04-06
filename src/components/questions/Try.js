@@ -4,7 +4,7 @@ import DataTable,{defaultThemes} from 'react-data-table-component'
 class Try extends Component {
     state={
         bla:[],
-        disp:"none",
+        disp:false,
         runscript:false
         
     }
@@ -30,7 +30,7 @@ class Try extends Component {
             
             this.setState({bla:res.data.data})
             if (res.data.user==="admin"){
-                this.setState({disp:""})
+                this.setState({disp:true})
             }
         })
     }
@@ -116,25 +116,33 @@ class Try extends Component {
                 selector:'status',
                 sortable:true
             },
-            {
-                name:'Uploaded By',
-                selector:'user',
-                sortable:true,
-
-            },
-            {
-               
-                selector:(obj)=><button className='btn btn-block btn-danger' onClick={this.delete(obj.id)}>Delete</button>,
-                ignoreRowClick: true,
-                allowOverflow: true,
-                button: true,
-                width: '100px',
-                padding:'12px'
-                
-                
-            },
+           
+            
            
         ]
+        if(this.state.disp){
+          columns.push( {
+            name:'Uploaded By',
+            selector:'user',
+            sortable:true,
+
+        },
+        
+         
+       
+        {
+           
+            selector:(obj)=><button style={{display:this.state.disp}} className='btn btn-block btn-danger' onClick={this.delete(obj.id)}>Delete</button>,
+            ignoreRowClick: true,
+            allowOverflow: true,
+            button: true,
+            width: '100px',
+            padding:'12px'
+            
+            
+        })
+        }
+
         return (
             <div>
             <div className="content-wrapper">
