@@ -22,6 +22,7 @@ import Profile from './components/user/Profile'
 import Tryfile from './components/Files/Tryfile'
 import Overall from './components/Files/Overall'
 import Tryalluser from './components/user/Tryalluser'
+import Dashboard from './components/Graphs/Dashboard'
 // import './App.css';
 // import './css/main.css'
 // import './css/style2.css'
@@ -143,6 +144,16 @@ class App extends Component {
               <Header/>
               <Menu/>
               <Tryfile/>
+              <Footer/>
+            </React.Fragment>
+          )}>
+
+          </Route>
+          <Route exact path='/home' render={(props) =>(
+            <React.Fragment>
+              <Header/>
+              <Menu/>
+              <Dashboard/>
               <Footer/>
             </React.Fragment>
           )}>
