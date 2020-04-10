@@ -50,10 +50,10 @@ class Tables extends Component {
     monthmodifier=(updated_array)=>{
         var month=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Nov','Dec']
         let final_array=updated_array.map((val)=>{
-            let new_date=val.date.split(" ",2)
-            let new_split=new_date[1].split(/(?:-| )+/)
+           
+            let new_split=val.date.split(/(?:-| )+/)
             let new_month=(Number(new_split[1])-1)
-            val.date=`${month[new_month]}-${new_split[2]} ${new_date[0]}`
+            val.date=`${month[new_month]}-${new_split[2]}`
             return val
             
         })
@@ -93,20 +93,18 @@ class Tables extends Component {
         <tbody>
             {this.state.question.map((val,i) =>{
                 return(
-                    <tr>
-                    <td>{(i+1)}</td>
-                    <td>  <span className="info-box-icon bg-info elevation-1"><i className="fas fa-upload" /></span></td>
-                <td>{val.linkname}</td>
-                <td><span >{val.date}</span></td>
-                    <td>
-                    <div >{val.user}</div>
-                    </td>
+                  <tr>
+                      <td>{(i+1)}</td>
+                      <td>  <span className="info-box-icon bg-info elevation-1"><i className="fas fa-upload" /></span></td>
+                      <td>{val.linkname}</td>
+                      <td><span >{val.date}</span></td>
+                      <td>
+                      <div >{val.user}</div>
+                      </td>
                 </tr>
                 )
 
             })}
-          
-        
         </tbody>
       </table>
     </div>

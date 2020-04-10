@@ -23,6 +23,9 @@ import Tryfile from './components/Files/Tryfile'
 import Overall from './components/Files/Overall'
 import Tryalluser from './components/user/Tryalluser'
 import Dashboard from './components/Graphs/Dashboard'
+import Graphdash from './components/Graphs/Graphdash'
+import Maingraph from './components/Graphs/Maingraph'
+
 // import './App.css';
 // import './css/main.css'
 // import './css/style2.css'
@@ -159,7 +162,18 @@ class App extends Component {
           )}>
 
           </Route>
-          <Route path='/overall'><Overall/></Route>
+          <Route exact path='/overall' render={(props) =>(
+            <React.Fragment>
+              <Header/>
+              <Menu/>
+              <Maingraph/>
+              <Footer/>
+            </React.Fragment>
+          )}>
+
+          </Route>
+          {/* <Route path='/overall'><Maingraph/></Route> */}
+       
         </Switch>
         
         </Router>
