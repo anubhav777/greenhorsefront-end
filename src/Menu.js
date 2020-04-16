@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 
 class Menu extends Component {
@@ -36,10 +37,10 @@ getuser=async (uid)=>{
           
 <aside className="main-sidebar sidebar-dark-primary elevation-4">
 
-  <a href="index3.html" className="brand-link">
+  <Link  to  ="index3.html" className="brand-link">
     <img src={process.env.PUBLIC_URL + "/arkoray-logo.png"} className="brand-image img-circle elevation-3" style={{opacity: '.8'}} />
     <span className="brand-text font-weight-light">Arkoray</span>
-  </a>
+  </Link>  
   {/* Sidebar */}
   <div className="sidebar">
     {/* Sidebar user panel (optional) */}
@@ -48,7 +49,7 @@ getuser=async (uid)=>{
         <img src="" id="tableBanner" style={imgwidth} className="img-circle elevation-2"  />
       </div>
       <div className="info">
-        <a  className="d-block">{this.state.fullname}</a>
+        <Link   className="d-block">{this.state.fullname}</Link>  
       </div>
     </div>
     {/* Sidebar Menu */}
@@ -57,98 +58,98 @@ getuser=async (uid)=>{
         {/* Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library */}
         <li className="nav-item has-treeview menu-open">
-          <a className="nav-link">
+          <Link  className="nav-link">
             <i className="nav-icon fas fa-tachometer-alt" />
             <p>
               Dashboard
               <i className="right fas fa-angle-left" />
             </p>
-          </a>
+          </Link>  
           <ul className="nav nav-treeview">
             <li className="nav-item">
-              <a href="./home" className="nav-link">
+              <Link  to  ="./home" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>Home</p>
-              </a>
+              </Link>  
             </li>
           </ul>
         </li>
        
 
         <li className="nav-item has-treeview  menu-open">
-          <a className="nav-link">
+          <Link  className="nav-link">
             <i className="nav-icon fas fa-edit" />
             <p>
             Questions
               <i className="fas fa-angle-left right" />
             </p>
-          </a>
+          </Link>  
           <ul className="nav nav-treeview">
             <li className="nav-item">
-              <a href="/upload" className="nav-link">
+              <Link  to  ="/upload" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>Question Upload</p>
-              </a>
+              </Link>  
             </li>
             <li className="nav-item">
-              <a href="/allquestion" className="nav-link">
+              <Link  to  ="/allquestion" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>Uploaded Questions</p>
-              </a>
+              </Link>  
             </li>
           </ul>
         </li>
        
         <li className="nav-item has-treeview menu-open">
-          <a  className="nav-link">
+          <Link   className="nav-link">
             <i className="nav-icon fas fa-book" />
             <p>
               Files
               <i className="fas fa-angle-left right" />
             </p>
-          </a>
+          </Link>  
           <ul className="nav nav-treeview">
             <li className="nav-item">
-              <a href="/fileupload" className="nav-link">
+              <Link  to  ="/fileupload" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>File Upload</p>
-              </a>
+              </Link>  
             </li>
             <li className="nav-item">
-              <a href="/getallfile" className="nav-link">
+              <Link  to  ="/getallfile" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>Uploaded File</p>
-              </a>
+              </Link>  
             </li>
             <li style={this.state.usertype !== 'admin' ? {display:'none'} : {display:'block'}} className="nav-item">
-              <a href="/editfile" className="nav-link">
+              <Link  to  ="/editfile" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>Edit File</p>
-              </a>
+              </Link>  
             </li>
            
           </ul>
         </li>
         <li className="nav-item has-treeview menu-open">
-          <a className="nav-link">
+          <Link  className="nav-link">
             <i className="nav-icon far fa-plus-square" />
             <p>
               Extras
               <i className="fas fa-angle-left right" />
             </p>
-          </a>
+          </Link>  
           <ul className="nav nav-treeview">
             <li className="nav-item">
-              <a href="/profile" className="nav-link">
+              <Link  to  ="/profile" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>Profile</p>
-              </a>
+              </Link>  
             </li>
             <li style={this.state.usertype !== 'admin' ? {display:'none'} : {display:'block'}} className="nav-item">
-              <a href="/alluser" className="nav-link">
+              <Link  to  ="/alluser" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>All User</p>
-              </a>
+              </Link>  
             </li>
           </ul>
         </li>
