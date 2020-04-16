@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {Formik} from 'formik'
 import {Redirect} from 'react-router-dom'
+import show_noty from '../Noty/Notify';
 
 class Edituser extends Component {
     state={
         address:"",
         fullname:"",
         email:"",
-        password:"",
         phone:"",
         id:"",
         usertype:"",
@@ -26,7 +26,7 @@ class Edituser extends Component {
         
         console.log(splitone)
         let token= localStorage.getItem('Token')
-        axios.get(`http://localhost:5000/getuser/${newid}`,{
+        axios.get(`https://greehorsebackend.herokuapp.com/getuser/${newid}`,{
             headers:{
                 'Content-Type':'application/json',
                 'x-access-token':token
@@ -63,9 +63,9 @@ class Edituser extends Component {
             "fullname":this.state.fullname,
             "phone":this.state.phone,
             "usertype":this.state.usertype,
-            "password":this.state.password
+          
         }
-        fetch(`http://localhost:5000/updateuser/${this.state.id}`, {
+        fetch(`https://greehorsebackend.herokuapp.com/updateuser/${this.state.id}`, {
             method: 'PUT',
             headers: {
               
@@ -82,8 +82,10 @@ class Edituser extends Component {
          .then(re => re.json())
          .then(res =>{
              console.log(res)
-             if(res.status === "sucess"){
+             console.log(res)
+             if(res.status === "success"){
                  this.setState({redirect:true})
+                 show_noty('alert',res.noty)
              }
          })
           .catch(error => {
@@ -178,16 +180,7 @@ class Edituser extends Component {
                     </div>
                     </div>
 
-              <label for="exampleInputEmail1">Password</label>
-              <div className="input-group mb-3">
-                  
-                <div className="input-group-prepend">
-               
-                </div>
-                <input type="text" className="form-control" placeholder="Password" name="password" id="password" value={this.state.password}
-                                      onChange={this.valuechange}/>
-                                     
-              </div>
+           
      
               <div class="card-footer">
                   <button type="submit" class="btn btn-info">Update</button>

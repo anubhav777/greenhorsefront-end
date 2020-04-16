@@ -4,6 +4,7 @@ import ValidationSchema from './Validation'
 import {Redirect} from 'react-router-dom'
 import base64 from 'base-64'
 import axios from 'axios'
+import show_noty from '../Noty/Notify';
 
 
 
@@ -30,7 +31,7 @@ class Login extends Component {
     }
     render() {
         if(this.state.redirect){
-            return(<Redirect to={'/try'}/>)
+            return(<Redirect exact path to={'/home'}/>)
         }
         else{
         return (
@@ -39,7 +40,7 @@ class Login extends Component {
                 let username=values.email
                 let password=values.password
                 const auth=  btoa(username + ':' + password)
-                axios.get('http://localhost:5000/login',{
+                axios.get('https://greehorsebackend.herokuapp.com/login',{
                     headers:{
                         'Authorization':`Basic ${auth}`,
                         "Content-Type": "application/json"
@@ -50,9 +51,9 @@ class Login extends Component {
                 .then(res=>{
                     console.log(res.data)
                     console.log(res.data.filepath)
-                    if(res.data.status === 'sucess'){
+                    if(res.data.status === 'success'){
                         const path=res.data.filepath
-                        axios.get(`http://localhost:5000/download/${path}`,{
+                        axios.get(`https://greehorsebackend.herokuapp.com/download/${path}`,{
                             headers:{
                                 'Access-Control-Allow-Origin':'*',
                                 'Access-Control-Expose-Headers': '*'
@@ -69,7 +70,9 @@ class Login extends Component {
                         localStorage.setItem('Dejavu',res.data.userid)
                        
                     }
-                    
+                    else{
+                        show_noty(res.data.status,res.data.noty)
+                    }
                 })
 
             }}>
@@ -86,22 +89,24 @@ class Login extends Component {
                     <div className="card-body login-card-body">
                         <p className="login-box-msg">Sign in to start your session</p>
                         <form onSubmit={handleSubmit}>
+                        <ErrorMessage style={err} name="email" component="div"/>
                         <div className="input-group mb-3">
                             <input type="email" className="form-control" placeholder="Email"  name="email" value={values.name}
                             onChange={handleChange}
                             onBlur={handleBlur}/>
-                             <ErrorMessage style={err} name="email" component="div"/>
+                            
                             <div className="input-group-append">
                             <div className="input-group-text">
                                 <span className="fas fa-envelope" />
                             </div>
                             </div>
                         </div>
+                        <ErrorMessage style={err} name="password" component="div"/>
                         <div className="input-group mb-3">
                             <input type="password" className="form-control" placeholder="Password" name="password" value={values.name}
                             onChange={handleChange}
                             onBlur={handleBlur}/>
-                            <ErrorMessage style={err} name="password" component="div"/>
+                         
                             <div className="input-group-append">
                             <div className="input-group-text">
                                 <span className="fas fa-lock" />
@@ -128,7 +133,8 @@ class Login extends Component {
                         {/* /.social-auth-links */}
                        
                         <p className="mb-0">
-                        <a href="?" className="text-center">Register a new membership</a>
+                        <a href="/" className="text-center">Register a new membership</a><br/>
+                        <a href="/reset" className="text-center">Forgot password</a>
                         </p>
                     </div>
                     {/* /.login-card-body */}

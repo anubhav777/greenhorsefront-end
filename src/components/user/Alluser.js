@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import DataTable,{defaultThemes} from 'react-data-table-component';
+import show_noty from '../Noty/Notify';
 class Alluser extends Component {
   state={
     bla:[],
@@ -13,7 +14,7 @@ componentWillMount(){
 }
 datafetcher=()=>{
     let token=localStorage.getItem('Token')
-    axios.get('http://localhost:5000/getalluser',{
+    axios.get('https://greehorsebackend.herokuapp.com/getalluser',{
         headers:{
             'x-access-token':token
         }
@@ -23,13 +24,6 @@ datafetcher=()=>{
         console.log(res.data)
         
         this.setState({bla:res.data.data})
-        this.setState({bla:res.data.data})
-        const script=document.createElement("script")
-
-    script.src='../../js/table.js'
-    script.async=true;
-
-    document.body.appendChild(script)
         if (res.data.user==="admin"){
             this.setState({disp:""})
         }
@@ -38,12 +32,13 @@ datafetcher=()=>{
 delete=(id)=>(e)=>{
     e.preventDefault()
     let token=localStorage.getItem('Token')
-    axios.delete(`http://localhost:5000/deleteuser/${id}`,{
+    axios.delete(`https://greehorsebackend.herokuapp.com/deleteuser/${id}`,{
         headers:{
             'x-access-token':token
         }
     })
     .then(res =>{
+      show_noty(res.data.status,res.data.noty)
         console.log(res.data)
         this.datafetcher()
     })
@@ -142,12 +137,7 @@ render() {
                 <div className="col-sm-6">
                   <h1>DataTables</h1>
                 </div>
-                <div className="col-sm-6">
-                  <ol className="breadcrumb float-sm-right">
-                    <li className="breadcrumb-item"><a href="#">Home</a></li>
-                    <li className="breadcrumb-item active">DataTables</li>
-                  </ol>
-                </div>
+                
               </div>
             </div>{/* /.container-fluid */}
           </section>

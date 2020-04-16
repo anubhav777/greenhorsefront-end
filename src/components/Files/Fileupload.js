@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import Percent from './Percent'
+import show_noty from '../Noty/Notify';
 
 class Fileupload extends Component {
   state={
@@ -14,9 +15,12 @@ class Fileupload extends Component {
     
 }
 uploadstaus=(e)=>{
+  if (e.target.files !== ""){
     this.setState({[e.target.name]:e.target.files,filedisplay:e.target.files[0].name,diplsy:true})
     
     console.log(e.target.files.path)
+  }
+   
 }
 uploadurl=(e)=>{
     this.setState({url:e.target.value})
@@ -38,7 +42,7 @@ uploadfile= async (e)=>{
     
     console.log(formdata)
     try{
-        await axios.post('http://localhost:5000/upload',formdata,{
+        await axios.post('https://greehorsebackend.herokuapp.com/upload',formdata,{
             headers:{
                 'Content-Type':'multipart/form-data',
                 'x-access-token':token
@@ -49,7 +53,7 @@ uploadfile= async (e)=>{
             
         })
         .then( res =>{
-          
+            show_noty(res.data.status,res.data.noty)
             console.log(res.data)
             let newwordcount=`Total: ${res.data.wordcount} Word Count`
             if (res.data.wordcount!== undefined){
@@ -61,7 +65,7 @@ uploadfile= async (e)=>{
             else{
               setTimeout(()=>{this.setState({percent:0})},500)
             }
-            
+             
             this.setState({url:'',file:'',filedisplay:''})
         })
        
@@ -82,12 +86,6 @@ uploadfile= async (e)=>{
     <div className="container-fluid">
       <div className="row mb-2">
 
-        <div className="col-sm-6">
-          <ol className="breadcrumb float-sm-right">
-            <li className="breadcrumb-item"><a href="#">Home</a></li>
-            <li className="breadcrumb-item active">General Form</li>
-          </ol>
-        </div>
       </div>
     </div>{/* /.container-fluid */}
   </section>

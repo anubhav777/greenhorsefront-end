@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Formik,ErrorMessage} from 'formik';
 import * as Yup from 'yup'
+import show_noty from '../Noty/Notify'
 
 class Uploadquestion extends Component {
   state={
@@ -32,8 +33,8 @@ reset=(e)=>{
             let v= this.initialValues
             let token= localStorage.getItem('Token')
             if(this.state.verifier === true){
-            console.log('hi')
-           fetch('http://localhost:5000/addlink',{
+            
+           fetch('https://greehorsebackend.herokuapp.com/addlink',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
@@ -47,8 +48,10 @@ reset=(e)=>{
                 this.setState({linkname:values.linkname})
                 console.log(res)
                 this.setState({show:true})
-                if(res.status === 'done'){
-                  alert(res.upload)
+
+                if(res.status === 'alert'){
+                  // alert(res.upload)
+                  show_noty(res.status,res.upload)
                  
                  
                 }
@@ -62,7 +65,7 @@ reset=(e)=>{
         else{
             console.log('two')
             values.process="Add"
-            setTimeout(()=>{fetch('http://localhost:5000/addlink',{
+            setTimeout(()=>{fetch('https://greehorsebackend.herokuapp.com/addlink',{
                method:'POST',
                 headers:{
                     'Content-Type':'application/json',
@@ -76,6 +79,7 @@ reset=(e)=>{
                console.log(res)
                values.process='Check'
             //  document.getElementById('form_ik').reset()
+            show_noty(res.status,res.noty)
             this.reset()
            })
           

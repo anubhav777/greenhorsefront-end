@@ -18,7 +18,7 @@ class Tryfile extends Component {
     }
     datafetcher=()=>{
         let token=localStorage.getItem('Token')
-        axios.get('http://localhost:5000/getallfile/overall',{
+        axios.get('http://localhost:5000/getallfile',{
             headers:{
                 
                 'x-access-token':token
@@ -28,12 +28,6 @@ class Tryfile extends Component {
         
         .then(res =>{
             console.log(res.data)
-            const script=document.createElement("script")
-
-            script.src='../../js/table.js'
-            script.async=true;
-    
-            document.body.appendChild(script)
             this.setState({bla:res.data.data})
             if (res.data.user==="admin"){
                 this.setState({disp:true})
@@ -211,12 +205,7 @@ class Tryfile extends Component {
                     <div className="col-sm-6">
                       <h1>DataTables</h1>
                     </div>
-                    <div className="col-sm-6">
-                      <ol className="breadcrumb float-sm-right">
-                        <li className="breadcrumb-item"><a href="#">Home</a></li>
-                        <li className="breadcrumb-item active">DataTables</li>
-                      </ol>
-                    </div>
+                    
                   </div>
                 </div>{/* /.container-fluid */}
               </section>

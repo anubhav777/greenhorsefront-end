@@ -13,7 +13,7 @@ class Headertab extends Component {
 
     }
     getdata=(token)=>{
-        axios.get('http://localhost:5000/graph',{
+        axios.get('https://greehorsebackend.herokuapp.com/graph',{
             headers:{
                 'x-access-token':token
             }
@@ -28,9 +28,8 @@ class Headertab extends Component {
     render() {
        
         return (
-            <section className="content">
-            <div className="container-fluid">
-              {/* Info boxes */}
+         
+              
               <div className="row">
                 <div className="col-12 col-sm-6 col-md-3">
                   <div className="info-box">
@@ -87,9 +86,7 @@ class Headertab extends Component {
                 {/* /.col */}
               </div>
            
-                   </div>
-        
-          </section>
+      
         );
     }
 }

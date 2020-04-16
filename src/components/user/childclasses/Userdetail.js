@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {Formik} from 'formik'
+import show_noty from '../../Noty/Notify';
 
 class Userdetail extends Component {
     state={
@@ -29,7 +30,7 @@ class Userdetail extends Component {
         
         console.log(splitone)
         let token= localStorage.getItem('Token')
-        axios.get(`http://localhost:5000/getuser/${newid}`,{
+        axios.get(`https://greehorsebackend.herokuapp.com/getuser/${newid}`,{
             headers:{
                 'Content-Type':'application/json',
                 'x-access-token':token
@@ -67,7 +68,7 @@ class Userdetail extends Component {
             "phone":this.state.phone,
         
         }
-        fetch(`http://localhost:5000/updateuser/${this.state.id}`, {
+        fetch(`https://greehorsebackend.herokuapp.com/updateuser/${this.state.id}`, {
             method: 'PUT',
             headers: {
               
@@ -84,7 +85,8 @@ class Userdetail extends Component {
          .then(re => re.json())
          .then(res =>{
              console.log(res)
-             if(res.status === "sucess"){
+             show_noty(res.status,res.noty)
+             if(res.status === "success"){
                  this.setState({redirect:true})
              }
          })
@@ -105,7 +107,7 @@ class Userdetail extends Component {
                                 <div className="card-header p-2">
                                 <ul className="nav nav-pills">
                                    
-                                    <li className="nav-item"><a className="nav-link" href="#settings" data-toggle="tab">Profile Update</a></li>
+                                    <li className="nav-item"><a className="nav-link" data-toggle="tab">Profile Update</a></li>
                                 </ul>
                                 </div>{/* /.card-header */}
                                 <div className="card-body">

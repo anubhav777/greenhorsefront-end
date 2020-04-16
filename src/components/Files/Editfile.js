@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DataTable,{defaultThemes} from 'react-data-table-component';
 import styled from 'styled-components'
+import show_noty from '../Noty/Notify';
 class Editfile extends Component {
     state={
         bla:[],
@@ -14,7 +15,7 @@ class Editfile extends Component {
         this.userftecher()
         this.datafetcher()
        
-        if(window.location.href.indexOf("page=") != -1){
+        if(window.location.href.indexOf("page=") !== -1){
           let url=window.location.href
           let newsplit=url.split('=',2)
           let newid=Number(newsplit[1])
@@ -33,7 +34,7 @@ class Editfile extends Component {
     }
     datafetcher=()=>{
         let token=localStorage.getItem('Token')
-        axios.get('http://localhost:5000/getallfile/overall',{
+        axios.get('https://greehorsebackend.herokuapp.com/getallfile',{
             headers:{
                 
                 'x-access-token':token
@@ -47,7 +48,7 @@ class Editfile extends Component {
             this.setState({alldata:res.data.data})
           
           
-            if (res.data.user==="admin"){
+            if (res.data.user === "admin"){
                 this.setState({disp:"",width:"150%"})
             }
         })
@@ -58,7 +59,7 @@ class Editfile extends Component {
     }
     generatedata=(id)=>{
       let token= localStorage.getItem('Token')
-      axios.get(`http://localhost:5000/getfile/${id}`,{
+      axios.get(`https://greehorsebackend.herokuapp.com/getfile/${id}`,{
           headers:{
               'Content-Type':'application/json',
               'x-access-token':token
@@ -71,7 +72,7 @@ class Editfile extends Component {
     }
     userftecher=()=>{
         let token=localStorage.getItem('Token')
-        axios.get('http://localhost:5000/getalluser',{
+        axios.get('https://greehorsebackend.herokuapp.com/getalluser',{
             headers:{
                 
                 'x-access-token':token
@@ -97,14 +98,15 @@ class Editfile extends Component {
         // }
         const newbla=JSON.stringify(this.state.bla)
         console.log(newbla)
-        axios.put(`http://localhost:5000/updatefile/${this.state.bla.id}`,this.state.bla,{
+        axios.put(`https://greehorsebackend.herokuapp.com/updatefile/${this.state.bla.id}`,this.state.bla,{
             headers:{
                 'Content-Type':'application/json',
                 'x-access-token':token
             }
             })
          .then(res =>{
-             console.log(res.data.data)
+           show_noty(res.data.status,res.data.noty)
+           
              if(res.data.data === "updated sucessfully"){
                  this.setState({redirect:true})
              }
@@ -126,12 +128,13 @@ class Editfile extends Component {
     delete=(id)=>(e)=>{
         e.preventDefault()
         let token=localStorage.getItem('Token')
-        axios.delete(`http://localhost:5000/deletefile/${id}`,{
+        axios.delete(`https://greehorsebackend.herokuapp.com/deletefile/${id}`,{
             headers:{
                 'x-access-token':token
             }
         })
         .then(res =>{
+          show_noty(res.data.status,res.data.noty)
             console.log(res.data)
             this.datafetcher()
         })
@@ -221,13 +224,7 @@ class Editfile extends Component {
         <div className="col-sm-6">
           <h1>Project Edit</h1>
         </div>
-        <div className="col-sm-6">
-          <ol className="breadcrumb float-sm-right">
-            <li className="breadcrumb-item"><a href="#">Home</a></li>
-            <li className="breadcrumb-item active">Project Edit</li>
-          </ol>
-        </div>
-      </div>
+              </div>
     </div>{/* /.container-fluid */}
   </section>
   {/* Main content */}
@@ -266,9 +263,9 @@ class Editfile extends Component {
               <select className="form-control custom-select" name="status" onChange={this.valuechange}>
                 {/* <option selected disabled>Select one</option> */}
                 <option>None</option>
-                <option selected={this.state.bla.status == 'none' ? true : false} value="none">On Hold</option>
-                <option  selected={this.state.bla.status == 'accepted' ? true : false} value='accepted'>Accepted</option>
-                <option selected  selected={this.state.bla.status == 'declined' ? true : false} value='declined'>Declined</option>
+                <option selected={this.state.bla.status === 'none' ? true : false} value="none">On Hold</option>
+                <option  selected={this.state.bla.status === 'accepted' ? true : false} value='accepted'>Accepted</option>
+                <option selected  selected={this.state.bla.status === 'declined' ? true : false} value='declined'>Declined</option>
               </select>
               </div>
               </div>
@@ -279,7 +276,7 @@ class Editfile extends Component {
               <select className="form-control custom-select"  onChange={this.valuechange}>
               {this.state.user.map((val)=>{
                                                   return(
-                                                  <option  selected={this.state.bla.userid == val.id ? true : false} value={val.id}>{val.fullname}</option>
+                                                  <option  selected={this.state.bla.userid === val.id ? true : false} value={val.id}>{val.fullname}</option>
                                                   )
                                               })}
                
@@ -332,7 +329,5 @@ class Editfile extends Component {
         );
     }
 }
-const pd={
-    float:'left'
-}
+
 export default Editfile;

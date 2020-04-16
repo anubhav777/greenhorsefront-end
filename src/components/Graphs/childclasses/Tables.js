@@ -13,7 +13,7 @@ class Tables extends Component {
         this.getquestion(token)
     }
     getfile=(token,month)=>{
-        axios.get('http://localhost:5000/getallfile/overall',{
+        axios.get('https://greehorsebackend.herokuapp.com/getallfile',{
             headers:{
                 'x-access-token':token
             }
@@ -32,7 +32,7 @@ class Tables extends Component {
     }
 
     getquestion=(token)=>{
-        axios.get('http://localhost:5000/getallquestion/overall',{
+        axios.get('https://greehorsebackend.herokuapp.com/getallquestion',{
             headers:{
                 'x-access-token':token
             }

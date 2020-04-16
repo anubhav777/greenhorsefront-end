@@ -21,7 +21,7 @@ class Profile extends Component {
     }
     getdata=(uid,token)=>{
         
-    axios.get(`http://localhost:5000/getuser/${uid}`,{
+    axios.get(`https://greehorsebackend.herokuapp.com/getuser/${uid}`,{
       headers:{
         'x-access-token':token
       }
@@ -35,7 +35,7 @@ class Profile extends Component {
     })
     }
     getquestion=(token)=>{
-        axios.get('http://localhost:5000/getallquestion/overall',{
+        axios.get('https://greehorsebackend.herokuapp.com/getallquestion/overall',{
             headers:{
               'x-access-token':token
             }})
@@ -46,7 +46,7 @@ class Profile extends Component {
             })
     }
     getfile=(token)=>{
-        axios.get('http://localhost:5000/getallfile/overall',{
+        axios.get('https://greehorsebackend.herokuapp.com/getallfile/overall',{
             headers:{
               'x-access-token':token
             }})
@@ -72,12 +72,7 @@ class Profile extends Component {
                             <div className="col-sm-6">
                             <h1>Profile</h1>
                             </div>
-                            <div className="col-sm-6">
-                            <ol className="breadcrumb float-sm-right">
-                                <li className="breadcrumb-item"><a href="#">Home</a></li>
-                                <li className="breadcrumb-item active">User Profile</li>
-                            </ol>
-                            </div>
+                            
                         </div>
                         </div>{/* /.container-fluid */}
                     </section>

@@ -3,7 +3,7 @@ import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 import Header from './Header'
 import Menu from './Menu'
 import Footer from './Footer'
-import Table from './Table'
+
 import Login from './components/user/Login'
 import Signup from './components/user/signup'
 import Uploadquestion from './components/questions/Uploadquestion'
@@ -20,11 +20,12 @@ import Tryimage from './components/user/Tryimage'
 import Trypicture from './components/user/Trypicture'
 import Profile from './components/user/Profile'
 import Tryfile from './components/Files/Tryfile'
-import Overall from './components/Files/Overall'
+
 import Tryalluser from './components/user/Tryalluser'
 import Dashboard from './components/Graphs/Dashboard'
-import Graphdash from './components/Graphs/Graphdash'
-import Maingraph from './components/Graphs/Maingraph'
+
+import Newcalendar from './components/Graphs/Newcalendar'
+
 
 // import './App.css';
 // import './css/main.css'
@@ -32,6 +33,7 @@ import Maingraph from './components/Graphs/Maingraph'
 import '../node_modules/noty/lib/noty.css'
 import '../node_modules/noty/lib/themes/mint.css'
 import Allquestion from './components/questions/Allquestion'
+import Dashtable from './components/Graphs/Dashtable';
 class App extends Component {
   render() {
     return (
@@ -53,6 +55,7 @@ class App extends Component {
           <Route path='/tryimg'><Tryimage/></Route>
           <Route path='/pics'><Trypicture/></Route>
           <Route path='/tryalluser'><Tryalluser/></Route>
+          <Route path='/calendar'><Newcalendar/></Route>
 
           <Route path='/allquestion' render={(props)=>(
             <React.Fragment>
@@ -152,7 +155,7 @@ class App extends Component {
           )}>
 
           </Route>
-          <Route exact path='/home' render={(props) =>(
+          <Route  path='/home' render={(props) =>(
             <React.Fragment>
               <Header/>
               <Menu/>
@@ -162,17 +165,16 @@ class App extends Component {
           )}>
 
           </Route>
-          <Route exact path='/overall' render={(props) =>(
+          <Route exact path='/dashtab' render={(props)=>(
             <React.Fragment>
               <Header/>
               <Menu/>
-              <Maingraph/>
+              <Dashtable/>
               <Footer/>
             </React.Fragment>
           )}>
 
           </Route>
-          {/* <Route path='/overall'><Maingraph/></Route> */}
        
         </Switch>
         

@@ -3,6 +3,7 @@ import {Formik,ErrorMessage} from 'formik'
 import {Redirect} from 'react-router-dom'
 import * as Yup from 'yup'
 import axios from 'axios'
+import show_noty from '../Noty/Notify'
 class signup extends Component {
     state={
         address:"",
@@ -71,9 +72,9 @@ class signup extends Component {
             formdata.append('address',values.address)
             formdata.append('phone',values.phone)
             formdata.append('password',values.password)
-            formdata.append('usertype','staff')
+            formdata.append('usertype','admin')
           console.log(JSON.stringify(values))
-          axios.post('http://localhost:5000/signup',formdata, {
+          axios.post('https://greehorsebackend.herokuapp.com/signup',formdata, {
            
             headers: {
               
@@ -83,13 +84,14 @@ class signup extends Component {
                         }})
           .then(res => {
             console.log(res.data)
-            if (res.data.status === 200){
+            if (res.data.status === 'success'){
              
-              this.setState({redirect:true})
+              console.log('hi')
               let new_email=JSON.stringify({
                 'email':values.email
               })
-              axios.post('http://localhost:5000/verification',new_email,{
+           
+              axios.post('https://greehorsebackend.herokuapp.com/verification',new_email,{
                 headers: {
               
                   // 'Accept': 'application/json, text/plain, */*',
@@ -98,8 +100,16 @@ class signup extends Component {
                             }
               })
               .then(res =>{
+                show_noty(res.data.status,res.data.noty)
                 console.log(res.data)
+                if (res.data.status === 'alert'){
+                this.setState({redirect:true})
+                }
+               
               })
+            }
+            else{
+             show_noty(res.data.status,res.data.noty)   
             }
 
           
@@ -125,18 +135,21 @@ class signup extends Component {
     <div className="card-body register-card-body">
       <p className="login-box-msg">Register a new membership</p>
       <form  onSubmit={handleSubmit}>
+      <ErrorMessage style={err} name="fullname" component="div"/>
         <div className="input-group mb-3">
+        
           <input className="form-control" placeholder="Full name" type="text" name="fullname" id="fullname" value={values.name}
                                       onChange={handleChange}
                                       onBlur={handleBlur} />
            
           <div className="input-group-append">
             <div className="input-group-text">
-            <ErrorMessage style={err} name="fullname" component="div"/>
+            
               <span className="fas fa-user" />
             </div>
           </div>
         </div>
+        <ErrorMessage style={err} name="email" component="div"/>
         <div className="input-group mb-3">
           <input  className="form-control" placeholder="Email" type="email" name="email" id="email" value={values.name}
                                       onChange={handleChange}
@@ -144,33 +157,36 @@ class signup extends Component {
                                       
           <div className="input-group-append">
             <div className="input-group-text">
-            <ErrorMessage style={err} name="email" component="div"/>
+            
               <span className="fas fa-envelope" />
             </div>
           </div>
         </div>
+        <ErrorMessage style={err} name="address" component="div"/>
         <div className="input-group mb-3">
           <input  className="form-control" placeholder="Adress"type="text" name="address" id="address" value={values.name}
                                       onChange={handleChange}
                                       onBlur={handleBlur}/>
           <div className="input-group-append">
             <div className="input-group-text">
-            <ErrorMessage style={err} name="address" component="div"/>
+            
               <span className="fas fa-envelope" />
             </div>
           </div>
         </div>
+        <ErrorMessage style={err} name="phone" component="div"/>
         <div className="input-group mb-3">
           <input className="form-control" placeholder="Phone" type="text" name="phone" id="phone" value={values.name}
                                       onChange={handleChange}
                                       onBlur={handleBlur}/>
           <div className="input-group-append">
             <div className="input-group-text">
-            <ErrorMessage style={err} name="phone" component="div"/>
+            
               <span className="fas fa-lock" />
             </div>
           </div>
         </div>
+        <ErrorMessage style={err} name="password" component="div"/>
         <div className="input-group mb-3">
           <input type="password" className="form-control" placeholder="Password"name="password" id="password" value={values.name}
                                       onChange={handleChange}
@@ -179,7 +195,7 @@ class signup extends Component {
           <div className="input-group-append">
          
             <div className="input-group-text">
-            <ErrorMessage style={err} name="password" component="div"/>
+           
               <span className="fas fa-lock" />
             </div>
           </div>

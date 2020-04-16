@@ -2,12 +2,19 @@ import React, { Component } from 'react';
 import {Formik,ErrorMessage, validateYupSchema} from 'formik'
 import * as Yup from 'yup'
 import Axios from 'axios';
+import show_noty from '../Noty/Notify';
+import {Redirect} from 'react-router-dom'
 class Confirmpassword extends Component {
     state={
         password:'',
-        confirmpassword:''
+        confirmpassword:'',
+        redirect:false
     }
     render() {
+      if(this.state.redirect){
+        return(<Redirect to={'/login'}/>)
+    }
+    else{
         return (
             <Formik initialValues={this.state} validationSchema={Yup.object().shape({
                 password:Yup.string()
@@ -28,13 +35,17 @@ class Confirmpassword extends Component {
                     password:values.password,
                     confirmpassword:values.confirmpassword
                 })
-                Axios.post(`http://localhost:5000/confirmpassword/${token}`,new_data,{
+                Axios.post(`https://greehorsebackend.herokuapp.com/confirmpassword/${token}`,new_data,{
                     headers:{
                         'Content-Type':'application/json'
                     }
                 })
                 .then(res=>{
+                  show_noty(res.data.status,res.data.noty)
                     console.log(res.data)
+                    if(res.data.status === 'alert'){
+                      setTimeout(()=>{this.setState({redirect:true})},500)
+                    }
                 })
 
 
@@ -93,6 +104,7 @@ class Confirmpassword extends Component {
          
         );
     }
+}
 }
 const err={
     color:"red"

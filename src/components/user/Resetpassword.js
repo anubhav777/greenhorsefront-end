@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Formik,ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios';
+import show_noty from '../Noty/Notify'
 class Resetpassword extends Component {
     state={
         email:''
@@ -14,17 +15,18 @@ class Resetpassword extends Component {
                 .required("please enter your email")
             })} onSubmit={(values,{resetForm})=>{
                 console.log(values)
-
+                show_noty('alert','Please wait a moment while your gmail is being verified')
                 let email=values.email
                 let new_email=JSON.stringify({
                     'email':email
                 })
-                axios.post('http://localhost:5000/resetpassword',new_email,{
+                axios.post('https://greehorsebackend.herokuapp.com/resetpassword',new_email,{
                     headers:{
                         'Content-Type':'application/json'
                     }
                 })
                 .then(res=>{
+                  show_noty(res.data.status,res.data.noty)
                     console.log(res.data)
                 })
                 resetForm({})
