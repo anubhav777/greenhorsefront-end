@@ -37,7 +37,7 @@ getuser=async (uid)=>{
           
 <aside className="main-sidebar sidebar-dark-primary elevation-4">
 
-  <Link  to  ="index3.html" className="brand-link">
+  <Link  to="index3.html" className="brand-link">
     <img src={process.env.PUBLIC_URL + "/arkoray-logo.png"} className="brand-image img-circle elevation-3" style={{opacity: '.8'}} />
     <span className="brand-text font-weight-light">Arkoray</span>
   </Link>  
@@ -67,7 +67,7 @@ getuser=async (uid)=>{
           </Link>  
           <ul className="nav nav-treeview">
             <li className="nav-item">
-              <Link  to  ="./home" className="nav-link">
+              <Link  to="./home" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>Home</p>
               </Link>  
@@ -86,13 +86,13 @@ getuser=async (uid)=>{
           </Link>  
           <ul className="nav nav-treeview">
             <li className="nav-item">
-              <Link  to  ="/upload" className="nav-link">
+              <Link  to="/upload" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>Question Upload</p>
               </Link>  
             </li>
             <li className="nav-item">
-              <Link  to  ="/allquestion" className="nav-link">
+              <Link  to="/allquestion" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>Uploaded Questions</p>
               </Link>  
@@ -110,19 +110,19 @@ getuser=async (uid)=>{
           </Link>  
           <ul className="nav nav-treeview">
             <li className="nav-item">
-              <Link  to  ="/fileupload" className="nav-link">
+              <Link  to="/fileupload" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>File Upload</p>
               </Link>  
             </li>
             <li className="nav-item">
-              <Link  to  ="/getallfile" className="nav-link">
+              <Link  to="/getallfile" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>Uploaded File</p>
               </Link>  
             </li>
             <li style={this.state.usertype !== 'admin' ? {display:'none'} : {display:'block'}} className="nav-item">
-              <Link  to  ="/editfile" className="nav-link">
+              <Link  to="/editfile" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>Edit File</p>
               </Link>  
@@ -140,13 +140,13 @@ getuser=async (uid)=>{
           </Link>  
           <ul className="nav nav-treeview">
             <li className="nav-item">
-              <Link  to  ="/profile" className="nav-link">
+              <Link  to="/profile" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>Profile</p>
               </Link>  
             </li>
             <li style={this.state.usertype !== 'admin' ? {display:'none'} : {display:'block'}} className="nav-item">
-              <Link  to  ="/alluser" className="nav-link">
+              <Link  to="/alluser" className="nav-link">
                 <i className="far fa-circle nav-icon" />
                 <p>All User</p>
               </Link>  

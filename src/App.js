@@ -3,7 +3,7 @@ import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 import Header from './Header'
 import Menu from './Menu'
 import Footer from './Footer'
-
+import './App.css'
 import Login from './components/user/Login'
 import Signup from './components/user/signup'
 import Uploadquestion from './components/questions/Uploadquestion'
@@ -62,7 +62,7 @@ class App extends Component {
               <Header/>
               <Menu/>
               <Allquestion/>
-              <Footer/>
+            
             </React.Fragment>
           )}></Route>
           
@@ -71,7 +71,7 @@ class App extends Component {
               <Header/>
               <Menu/>
               <Uploadquestion/>
-              <Footer/>
+              
             </React.Fragment>
           )}></Route>
           <Route exact path='/alluser' render={(props)=>(
@@ -79,7 +79,7 @@ class App extends Component {
               <Header/>
               <Menu/>
               <Alluser/>
-              <Footer/>
+              
             </React.Fragment>
           )}>
 
@@ -89,7 +89,7 @@ class App extends Component {
                 <Header/>
               <Menu/>
               <Edituser/>
-              <Footer/>
+              
             </React.Fragment>
           )}>
 
@@ -99,7 +99,7 @@ class App extends Component {
                 <Header/>
                 <Menu/>
               <Fileupload/>
-              <Footer/>
+            
             </React.Fragment>
           )}>
 
@@ -109,7 +109,7 @@ class App extends Component {
               <Header/>
               <Menu/>
               <Allfile/>
-              <Footer/>
+             
             </React.Fragment>
           )}>
 
@@ -119,7 +119,7 @@ class App extends Component {
               <Header/>
               <Menu/>
               <Editfile/>
-              <Footer/>
+             
             </React.Fragment>
           )}>
 
@@ -129,7 +129,7 @@ class App extends Component {
               <Header/>
               <Menu/>
               <Try/>
-              <Footer/>
+            
             </React.Fragment>
           )}>
 
@@ -139,7 +139,7 @@ class App extends Component {
               <Header/>
                 <Menu/>
                 <Profile/>
-                <Footer/>
+              
             
             </React.Fragment>
           )}>
@@ -150,7 +150,7 @@ class App extends Component {
               <Header/>
               <Menu/>
               <Tryfile/>
-              <Footer/>
+             
             </React.Fragment>
           )}>
 
@@ -170,7 +170,7 @@ class App extends Component {
               <Header/>
               <Menu/>
               <Dashtable/>
-              <Footer/>
+              
             </React.Fragment>
           )}>
 

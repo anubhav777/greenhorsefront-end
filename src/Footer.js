@@ -3,17 +3,19 @@ import React, { Component } from 'react';
 class Footer extends Component {
     render() {
         return (
-            <div>
-                  <footer class="main-footer">
-                        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-                        All rights reserved.
-                        <div class="float-right d-none d-sm-inline-block">
-                        <b>Version</b> 3.0.2
-                        </div>
-                    </footer>
-            </div>
+     <footer syle={ml} className="main-footer">
+  <strong>Copyright © 2020-2015<a href="http://adminlte.io">Arkoray</a>.</strong>
+  All rights reserved.
+  <div className="float-right d-none d-sm-inline-block">
+    <b>Version</b> 0.0.1
+  </div>
+</footer>
+
+
         );
     }
 }
-
+const ml={
+    height:'50px'
+}
 export default Footer;
