@@ -65,10 +65,10 @@ class Resetpassword extends Component {
         </div>
       </form>
       <p className="mt-3 mb-1">
-        <a href="login.html">Login</a>
+        <a href="/login">Login</a>
       </p>
       <p className="mb-0">
-        <a href="register.html" className="text-center">Register a new membership</a>
+        <a href="/" className="text-center">Register a new membership</a>
       </p>
     </div>
     {/* /.login-card-body */}
