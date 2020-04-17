@@ -93,7 +93,7 @@ class Tables extends Component {
         <tbody>
             {this.state.question.map((val,i) =>{
                 return(
-                  <tr>
+                  <tr key={i}>
                       <td>{(i+1)}</td>
                       <td>  <span className="info-box-icon bg-info elevation-1"><i className="fas fa-upload" /></span></td>
                       <td>{val.linkname}</td>
@@ -129,9 +129,9 @@ class Tables extends Component {
   {/* /.card-header */}
   <div className="card-body p-0">
     <ul className="products-list product-list-in-card pl-2 pr-2">
-        {this.state.files.map((val)=>{
+        {this.state.files.map((val,i)=>{
             return(
-                <li className="item">
+                <li className="item" key={i}>
                 <div className="product-img">
                   <img src={process.env.PUBLIC_URL +"/word.jpg"} alt="Product Image" className="img-size-50" />
                 </div>

@@ -274,9 +274,10 @@ class Editfile extends Component {
             <div className="form-group">
               <label htmlFor="inputStatus" >User</label>
               <select className="form-control custom-select"  onChange={this.valuechange}>
-              {this.state.user.map((val)=>{
+              {this.state.user.map((val,i)=>{
                                                   return(
-                                                  <option  selected={this.state.bla.userid === val.id ? true : false} value={val.id}>{val.fullname}</option>
+                                                    
+                                                  <option key={i}  selected={this.state.bla.userid === val.id ? true : false} value={val.id}>{val.fullname}</option>
                                                   )
                                               })}
                

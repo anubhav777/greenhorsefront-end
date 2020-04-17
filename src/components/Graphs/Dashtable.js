@@ -226,9 +226,9 @@ class Dashtable extends Component {
                     <div className='row' >
                     <div className="col-5" style={{marginLeft:'15px'}}>
                     <select name='userid'  onChange={this.value_changer} className="form-control">
-                        {this.state.allusers.map((val)=>{
+                        {this.state.allusers.map((val,i)=>{
                             return(
-                            <option value={val.id}>{val.fullname}</option>
+                            <option key={i} value={val.id}>{val.fullname}</option>
                             )
                         })}
                     </select>
