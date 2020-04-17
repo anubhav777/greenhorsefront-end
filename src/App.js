@@ -20,16 +20,9 @@ import Tryimage from './components/user/Tryimage'
 import Trypicture from './components/user/Trypicture'
 import Profile from './components/user/Profile'
 import Tryfile from './components/Files/Tryfile'
-
 import Tryalluser from './components/user/Tryalluser'
 import Dashboard from './components/Graphs/Dashboard'
-
 import Newcalendar from './components/Graphs/Newcalendar'
-
-
-// import './App.css';
-// import './css/main.css'
-// import './css/style2.css'
 import '../node_modules/noty/lib/noty.css'
 import '../node_modules/noty/lib/themes/mint.css'
 import Allquestion from './components/questions/Allquestion'
@@ -54,7 +47,7 @@ class App extends Component {
           <Route path='/verifier'><Verifier/></Route>
           <Route path='/tryimg'><Tryimage/></Route>
           <Route path='/pics'><Trypicture/></Route>
-          <Route path='/tryalluser'><Tryalluser/></Route>
+          <Route path='/try'><Tryalluser/></Route>
           <Route path='/calendar'><Newcalendar/></Route>
 
           <Route path='/allquestion' render={(props)=>(

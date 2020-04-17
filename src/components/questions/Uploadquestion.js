@@ -26,7 +26,7 @@ reset=(e)=>{
           <Formik initialValues={this.state} validationSchema={Yup.object().shape({
             linkname:Yup.string()
             .min(5,"Please enter valid link since it does not satisfy the length")
-            .max(50,"link seems to be too long")
+            .max(150,"link seems to be too long")
             .required("Please enter link")
         })} onSubmit={(values,{resetForm})=>{
             console.log(this.state)
