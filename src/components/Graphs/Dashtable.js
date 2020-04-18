@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import DataTable,{defaultThemes} from 'react-data-table-component';
+import token_genrator from '../Miscallenous/Token';
 class Dashtable extends Component {
     state={
         data:[],
@@ -23,7 +24,10 @@ class Dashtable extends Component {
 
     }
     componentDidMount(){
+      if(token_genrator()){
         this.getdata()
+
+      }
         
     }
     getdata=()=>{
@@ -31,7 +35,7 @@ class Dashtable extends Component {
         let datas='date'
       axios.get(`https://greehorsebackend.herokuapp.com/graph?stats=${datas}`,{
           headers:{
-              'x-access-token':this.state.token,
+              'x-access-token':token_genrator(),
               'send_methods':this.state.call_method,
               'curr_date':this.state.current_date,
 
@@ -45,7 +49,7 @@ class Dashtable extends Component {
      
         axios.get('https://greehorsebackend.herokuapp.com/getalluser',{
             headers:{
-                'x-access-token':this.state.token
+                'x-access-token':token_genrator()
             }
         })
         
@@ -81,7 +85,7 @@ class Dashtable extends Component {
          let user_method=this.state.user_method
          axios.get(`https://greehorsebackend.herokuapp.com/${user_method}?userid=${userid}`,{headers:{
 
-         'x-access-token':this.state.token
+         'x-access-token':token_genrator()
          }})
          .then(res =>{
              this.setState({data:res.data.data})

@@ -3,17 +3,20 @@ import axios from 'axios'
 import {Link} from 'react-router-dom'
 import DataTable,{defaultThemes} from 'react-data-table-component';
 import show_noty from '../Noty/Notify';
+import token_genrator from '../Miscallenous/Token';
 class Alluser extends Component {
   state={
     bla:[],
     disp:'none'
 }
 componentWillMount(){
-    // fetch('http://localhost:5000/tryuser')
-  this.datafetcher()
+    if(token_genrator()){
+      this.datafetcher()
+    }
+
 }
 datafetcher=()=>{
-    let token=localStorage.getItem('Token')
+    let token=token_genrator()
     axios.get('https://greehorsebackend.herokuapp.com/getalluser',{
         headers:{
             'x-access-token':token
@@ -31,7 +34,7 @@ datafetcher=()=>{
 }
 delete=(id)=>(e)=>{
     e.preventDefault()
-    let token=localStorage.getItem('Token')
+    let token=token_genrator()
     axios.delete(`https://greehorsebackend.herokuapp.com/deleteuser/${id}`,{
         headers:{
             'x-access-token':token

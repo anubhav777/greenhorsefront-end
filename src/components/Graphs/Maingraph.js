@@ -58,7 +58,6 @@ class Maingraph extends Component {
       
       full_array:[],
       files_data:'',
-      token:'',
       cuurent_month:'',
       current_date:'',
       current_week:'1',
@@ -75,20 +74,23 @@ class Maingraph extends Component {
         let cuurent_month=('0' + (date.getMonth()+1)).slice(-2)
         let current_date= date.getFullYear() + '-'+ cuurent_month + '-'+('0' + date.getDate()).slice(-2)
         console.log(current_date)
-        let token=localStorage.getItem('Token')
-        let new_usertype=localStorage.getItem('Usertype')
-        this.setState({token:token,cuurent_month:cuurent_month,current_date:current_date,usertype:new_usertype})
+       
+       
+        this.setState({cuurent_month:cuurent_month,current_date:current_date})
       }
       componentDidMount(){
-        
-        this.getdata()
+        if(this.props.token){
+          let new_usertype=localStorage.getItem('Usertype')
+          this.setState({usertype:new_usertype})
+          this.getdata()
+        }
       }
       getdata=()=>{
           
           let datas=this.state.url_method
         axios.get(`https://greehorsebackend.herokuapp.com/graph?stats=${datas}`,{
             headers:{
-                'x-access-token':this.state.token,
+                'x-access-token':this.props.token,
                 'send_methods':this.state.call_method,
                 'curr_date':this.state.current_date,
                 'months':this.state.cuurent_month,

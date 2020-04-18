@@ -5,6 +5,8 @@ import Axios from 'axios'
 import fileDownload from 'js-file-download';
 import DataTable,{defaultThemes} from 'react-data-table-component';
 import show_noty from '../Noty/Notify';
+import token_genrator from '../Miscallenous/Token'
+
 class Allfile extends Component {
   state={
     bla:[],
@@ -13,11 +15,14 @@ class Allfile extends Component {
     
 }
 componentWillMount(){
+  if(token_genrator()){
+    this.datafetcher()
+  }
    
-  this.datafetcher()
+  
 }
 datafetcher=()=>{
-    let token=localStorage.getItem('Token')
+    let token=token_genrator()
     axios.get('https://greehorsebackend.herokuapp.com/getallfile',{
         headers:{
             
@@ -37,7 +42,7 @@ datafetcher=()=>{
 
 delete=(id)=>(e)=>{
     e.preventDefault()
-    let token=localStorage.getItem('Token')
+    let token=token_genrator()
     axios.delete(`https://greehorsebackend.herokuapp.com/deletefile/${id}`,{
         headers:{
             'x-access-token':token

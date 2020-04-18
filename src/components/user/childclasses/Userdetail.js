@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {Formik} from 'formik'
 import show_noty from '../../Noty/Notify';
+import token_genrator from '../../Miscallenous/Token';
 
 class Userdetail extends Component {
     state={
@@ -18,7 +19,10 @@ class Userdetail extends Component {
 
     }
     componentWillMount(){
-        this.getdata()
+        if(token_genrator()){
+            this.getdata()
+        }
+       
     }
     disable_func=(e)=>{
         this.setState({disable:!this.state.disable})
@@ -29,7 +33,7 @@ class Userdetail extends Component {
         let newid=splitone[1]
         
         console.log(splitone)
-        let token= localStorage.getItem('Token')
+        let token= token_genrator()
         axios.get(`https://greehorsebackend.herokuapp.com/getuser/${newid}`,{
             headers:{
                 'Content-Type':'application/json',
@@ -60,7 +64,7 @@ class Userdetail extends Component {
     }
     updatedata=(e)=>{
         e.preventDefault()
-        let token= localStorage.getItem('Token')
+        let token= token_genrator()
         const values={
             "email":this.state.email,
             "address":this.state.address,

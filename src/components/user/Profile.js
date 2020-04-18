@@ -3,6 +3,7 @@ import axios from 'axios'
 import Userprofile from './childclasses/Userprofile'
 import Userdetail from './childclasses/Userdetail'
 import Adminprofile from './childclasses/Adminprofile';
+import token_genrator from '../Miscallenous/Token';
 class Profile extends Component {
     state={
         userdata:[],
@@ -12,12 +13,14 @@ class Profile extends Component {
         admin:true
     }
     componentWillMount(){
+        if(token_genrator()){
         let uid=localStorage.getItem('Dejavu')
-        let token=localStorage.getItem('Token')
+        let token=token_genrator()
         this.getdata(uid,token)
         this.getquestion(token)
         this.getfile(token)
         this.imageurl()
+        }
     }
     getdata=(uid,token)=>{
         

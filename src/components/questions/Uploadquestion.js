@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Formik,ErrorMessage} from 'formik';
 import * as Yup from 'yup'
 import show_noty from '../Noty/Notify'
+import token_genrator from '../Miscallenous/Token';
 
 class Uploadquestion extends Component {
   state={
@@ -31,7 +32,7 @@ reset=(e)=>{
         })} onSubmit={(values,{resetForm})=>{
             console.log(this.state)
             let v= this.initialValues
-            let token= localStorage.getItem('Token')
+            let token= token_genrator()
             if(this.state.verifier === true){
             
            fetch('https://greehorsebackend.herokuapp.com/addlink',{
@@ -51,7 +52,7 @@ reset=(e)=>{
 
                 if(res.status === 'alert'){
                   // alert(res.upload)
-                  show_noty(res.status,res.upload)
+                  show_noty(res.status,res.noty)
                  
                  
                 }

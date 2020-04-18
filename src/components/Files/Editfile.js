@@ -3,6 +3,7 @@ import axios from 'axios';
 import DataTable,{defaultThemes} from 'react-data-table-component';
 import styled from 'styled-components'
 import show_noty from '../Noty/Notify';
+import token_genrator from '../Miscallenous/Token';
 class Editfile extends Component {
     state={
         bla:[],
@@ -11,8 +12,8 @@ class Editfile extends Component {
         alldata:[]
     }
     componentWillMount(){
-        
-        this.userftecher()
+        if(token_genrator()){
+          this.userftecher()
         this.datafetcher()
        
         if(window.location.href.indexOf("page=") !== -1){
@@ -27,17 +28,17 @@ class Editfile extends Component {
         }
        
 
+
+        }
+        
        
     }
-    componentDidMount(){
-      
-    }
+
     datafetcher=()=>{
-        let token=localStorage.getItem('Token')
         axios.get('https://greehorsebackend.herokuapp.com/getallfile',{
             headers:{
                 
-                'x-access-token':token
+                'x-access-token':token_genrator()
 
             }
         })
@@ -58,11 +59,11 @@ class Editfile extends Component {
       this.generatedata(id)
     }
     generatedata=(id)=>{
-      let token= localStorage.getItem('Token')
+      
       axios.get(`https://greehorsebackend.herokuapp.com/getfile/${id}`,{
           headers:{
               'Content-Type':'application/json',
-              'x-access-token':token
+              'x-access-token':token_genrator()
 
           }
       })
@@ -71,11 +72,11 @@ class Editfile extends Component {
       })
     }
     userftecher=()=>{
-        let token=localStorage.getItem('Token')
+       
         axios.get('https://greehorsebackend.herokuapp.com/getalluser',{
             headers:{
                 
-                'x-access-token':token
+                'x-access-token':token_genrator()
 
             }
         })
@@ -88,7 +89,7 @@ class Editfile extends Component {
     }
     updatedata=(e)=>{
         e.preventDefault()
-        let token= localStorage.getItem('Token')
+       
         // const values={
         //     "email":this.state.email,
         //     "address":this.state.address,
@@ -101,7 +102,7 @@ class Editfile extends Component {
         axios.put(`https://greehorsebackend.herokuapp.com/updatefile/${this.state.bla.id}`,this.state.bla,{
             headers:{
                 'Content-Type':'application/json',
-                'x-access-token':token
+                'x-access-token':token_genrator()
             }
             })
          .then(res =>{
@@ -127,10 +128,10 @@ class Editfile extends Component {
     }
     delete=(id)=>(e)=>{
         e.preventDefault()
-        let token=localStorage.getItem('Token')
+      
         axios.delete(`https://greehorsebackend.herokuapp.com/deletefile/${id}`,{
             headers:{
-                'x-access-token':token
+                'x-access-token':token_genrator()
             }
         })
         .then(res =>{

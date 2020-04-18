@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import DataTable,{defaultThemes} from 'react-data-table-component'
 import show_noty from '../Noty/Notify';
+import token_genrator from '../Miscallenous/Token';
 class Allquestion extends Component {
   state={
     bla:[],
@@ -10,18 +11,22 @@ class Allquestion extends Component {
     
 }
 componentWillMount(){
+  if(token_genrator()){
+    this.datafetcher()
+
+  }
     // fetch('https://greehorsebackend.herokuapp.com/tryuser')
-  this.datafetcher()
+ 
 
 
 }
 
 datafetcher=()=>{
-    let token=localStorage.getItem('Token')
+    
     axios.get('https://greehorsebackend.herokuapp.com/getallquestion',{
         headers:{
             
-            'x-access-token':token
+            'x-access-token':token_genrator()
 
         }
     })
@@ -38,10 +43,10 @@ datafetcher=()=>{
 
 delete=(id)=>(e)=>{
     e.preventDefault()
-    let token=localStorage.getItem('Token')
+    
     axios.delete(`https://greehorsebackend.herokuapp.com/deletequestion/${id}`,{
         headers:{
-            'x-access-token':token
+            'x-access-token':token_genrator()
         }
     })
     .then(res =>{

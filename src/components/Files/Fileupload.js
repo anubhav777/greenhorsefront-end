@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import Percent from './Percent'
 import show_noty from '../Noty/Notify';
+import token_genrator from '../Miscallenous/Token';
 
 class Fileupload extends Component {
   state={
@@ -28,7 +29,7 @@ uploadurl=(e)=>{
 }
 uploadfile= async (e)=>{
     e.preventDefault();
-    let token= localStorage.getItem('Token')
+    
     
     const formdata = new FormData()
     for(const key of Object.keys(this.state.file)){
@@ -45,7 +46,7 @@ uploadfile= async (e)=>{
         await axios.post('https://greehorsebackend.herokuapp.com/upload',formdata,{
             headers:{
                 'Content-Type':'multipart/form-data',
-                'x-access-token':token
+                'x-access-token':token_genrator()
             },
             onUploadProgress: ProgressEvent =>{
               this.setState({percent:(parseInt(Math.round((ProgressEvent.loaded * 100)/ProgressEvent.total)))})

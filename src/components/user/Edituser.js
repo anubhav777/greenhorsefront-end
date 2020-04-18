@@ -3,6 +3,7 @@ import axios from 'axios'
 import {Formik} from 'formik'
 import {Redirect} from 'react-router-dom'
 import show_noty from '../Noty/Notify';
+import token_genrator from '../Miscallenous/Token';
 
 class Edituser extends Component {
     state={
@@ -17,7 +18,10 @@ class Edituser extends Component {
 
     }
     componentWillMount(){
+      if(token_genrator()){
         this.getdata()
+      }
+        
     }
     getdata=()=>{
         let url=window.location.href
@@ -25,7 +29,7 @@ class Edituser extends Component {
         let newid=splitone[1]
         
         console.log(splitone)
-        let token= localStorage.getItem('Token')
+        let token= token_genrator()
         axios.get(`https://greehorsebackend.herokuapp.com/getuser/${newid}`,{
             headers:{
                 'Content-Type':'application/json',
@@ -56,7 +60,7 @@ class Edituser extends Component {
     }
     updatedata=(e)=>{
         e.preventDefault()
-        let token= localStorage.getItem('Token')
+        let token= token_genrator()
         const values={
             "email":this.state.email,
             "address":this.state.address,

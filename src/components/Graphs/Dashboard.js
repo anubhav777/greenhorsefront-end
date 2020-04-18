@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import Headertab from './childclasses/Headertab'
 import Tables from './childclasses/Tables'
 import Maingraph from './Maingraph'
-
+import token_genrator from '../Miscallenous/Token'
 class Dashboard extends Component {
   state={
     usertype:''
   }
     UNSAFE_componentWillMount(){
-      let usertype=localStorage.getItem('Usertype')
-      this.setState({usertype:usertype})
+      if(token_genrator()){
+        console.log(token_genrator())
+        let usertype=localStorage.getItem('Usertype')
+        this.setState({usertype:usertype})
+      }
     }
     render() {
         return (
@@ -32,9 +35,9 @@ class Dashboard extends Component {
   </div>
   <section className="content">
             <div className="container-fluid">
-      <Headertab/>
-      <Maingraph/>
-    <Tables/>
+            <Headertab token={token_genrator()}/>
+      <Maingraph  token={token_genrator()}/>
+    <Tables  token={token_genrator()}/>
     </div>
     </section>
 </div>

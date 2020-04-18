@@ -7,15 +7,18 @@ class Tables extends Component {
         question:[]
     }
     componentWillMount(){
-        let token=localStorage.getItem('Token')
+      if(this.props.token){
+       
         
-        this.getfile(token)
-        this.getquestion(token)
+        this.getfile()
+        this.getquestion()
+
+      }
     }
-    getfile=(token,month)=>{
+    getfile=(month)=>{
         axios.get('https://greehorsebackend.herokuapp.com/getallfile',{
             headers:{
-                'x-access-token':token
+                'x-access-token':this.props.token
             }
         })
         .then(res =>{
@@ -31,10 +34,10 @@ class Tables extends Component {
   
     }
 
-    getquestion=(token)=>{
+    getquestion=()=>{
         axios.get('https://greehorsebackend.herokuapp.com/getallquestion',{
             headers:{
-                'x-access-token':token
+                'x-access-token':this.props.token
             }
         })
         .then(res =>{

@@ -7,15 +7,17 @@ class Headertab extends Component {
         target:null
 
     }
-    componentWillMount(){
-        let token=localStorage.getItem('Token')
-        this.getdata(token)
+    UNSAFE_componentWillMount(){
+      if(this.props.token){
+       this.getdata()
+      }
+       
 
-    }
-    getdata=(token)=>{
+   }
+    getdata=()=>{
         axios.get('https://greehorsebackend.herokuapp.com/graph',{
             headers:{
-                'x-access-token':token
+                'x-access-token':this.props.token
             }
         })
         .then(res=>{

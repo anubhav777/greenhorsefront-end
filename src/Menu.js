@@ -1,23 +1,31 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import {Link} from 'react-router-dom'
-
+import {Link,Redirect} from 'react-router-dom'
+import token_genrator from './components/Miscallenous/Token'
 
 class Menu extends Component {
   state={
     fullname:"",
-    usertype:''
+    usertype:'',
+    redirct:false
   }
   componentWillMount(){
-    let uid=localStorage.getItem('Dejavu')
-    this.getuser(uid)
+   
   }
   componentDidMount(){
-    var dataImage = localStorage.getItem('Profile');
-    let bannerImg = document.getElementById('tableBanner');
-    let usertype=localStorage.getItem('Usertype')
-    this.setState({usertype:usertype})
-    bannerImg.src = "data:image/png;base64," + dataImage;
+    if(token_genrator()){
+      var dataImage = localStorage.getItem('Profile');
+      let bannerImg = document.getElementById('tableBanner');
+      let usertype=localStorage.getItem('Usertype')
+      this.setState({usertype:usertype})
+      bannerImg.src = "data:image/png;base64," + dataImage;
+       
+      let uid=localStorage.getItem('Dejavu')
+      this.getuser(uid)
+    }
+    else{
+      this.setState({redirct:true})
+    }
 }
 getuser=async (uid)=>{
   let token=localStorage.getItem('Token')
@@ -31,7 +39,17 @@ getuser=async (uid)=>{
       this.setState({fullname:res.data.fullname})
     })
 }
+logout=()=>{
+  localStorage.clear()
+}
     render() {
+  if(this.state.redirct){
+    return(
+      <Redirect to={'/login'}/>
+    )
+   
+  } 
+  else{ 
       
         return (
           
@@ -153,7 +171,15 @@ getuser=async (uid)=>{
             </li>
           </ul>
         </li>
-       
+        <li className="nav-item has-treeview menu-open">
+          <Link onClick={this.logout} to={'/login'} className="nav-link">
+            <i className="fas fa-sign-out-alt nav-icon" />
+            <p>
+              Logout
+              
+            </p>
+          </Link> 
+        </li>
       </ul>
     </nav>
     {/* /.sidebar-menu */}
@@ -165,6 +191,7 @@ getuser=async (uid)=>{
           
         );
     }
+}
 }
 const imgwidth={
   width:"2.1rem",
