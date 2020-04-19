@@ -12,11 +12,14 @@ class Allfile extends Component {
     bla:[],
     user:[],
     disp:false,
+    usertype:''
     
 }
 componentWillMount(){
   if(token_genrator()){
     this.datafetcher()
+    let usertype=localStorage.getItem('Usertype')
+    this.setState({usertype:usertype})
   }
    
   
@@ -212,7 +215,13 @@ render() {
                   <h1>DataTables</h1>
                 </div>
 
-              </div>
+                <div className="col-sm-6">
+                  <ol className="breadcrumb float-sm-right">
+                    <li className="breadcrumb-item"><a href="/getallfile">DataTable</a></li>
+                <li style={this.state.usertype !== 'admin' ? {display:'none'} : {display:'list-item'}} className="breadcrumb-item active"><a href="/userinsight">User-Insight</a></li>
+                  </ol>
+                </div>
+                  </div>
             </div>{/* /.container-fluid */}
           </section>
           {/* Main content */}

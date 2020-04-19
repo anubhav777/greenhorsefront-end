@@ -27,6 +27,7 @@ import '../node_modules/noty/lib/noty.css'
 import '../node_modules/noty/lib/themes/mint.css'
 import Allquestion from './components/questions/Allquestion'
 import Dashtable from './components/Graphs/Dashtable';
+import Userinsight from './components/Files/Userinsight'
 class App extends Component {
   render() {
     return (
@@ -163,6 +164,16 @@ class App extends Component {
               <Header/>
               <Menu/>
               <Dashtable/>
+              
+            </React.Fragment>
+          )}>
+
+          </Route>
+          <Route exact path ='/userinsight' render={(props)=>(
+            <React.Fragment>
+              <Header/>
+              <Menu/>
+              <Userinsight/>
               
             </React.Fragment>
           )}>
