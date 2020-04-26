@@ -35,7 +35,7 @@ reset=(e)=>{
             let token= token_genrator()
             if(this.state.verifier === true){
             
-           fetch('https://greehorsebackend.herokuapp.com/addlink',{
+           fetch('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/addlink',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
@@ -66,7 +66,7 @@ reset=(e)=>{
         else{
             console.log('two')
             values.process="Add"
-            setTimeout(()=>{fetch('https://greehorsebackend.herokuapp.com/addlink',{
+            setTimeout(()=>{fetch('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/addlink',{
                method:'POST',
                 headers:{
                     'Content-Type':'application/json',

@@ -35,7 +35,7 @@ class Confirmpassword extends Component {
                     password:values.password,
                     confirmpassword:values.confirmpassword
                 })
-                Axios.post(`https://greehorsebackend.herokuapp.com/confirmpassword/${token}`,new_data,{
+                Axios.post(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/confirmpassword/${token}`,new_data,{
                     headers:{
                         'Content-Type':'application/json'
                     }

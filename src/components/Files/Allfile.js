@@ -26,7 +26,7 @@ componentWillMount(){
 }
 datafetcher=()=>{
     let token=token_genrator()
-    axios.get('https://greehorsebackend.herokuapp.com/getallfile',{
+    axios.get('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/getallfile',{
         headers:{
             
             'x-access-token':token
@@ -46,7 +46,7 @@ datafetcher=()=>{
 delete=(id)=>(e)=>{
     e.preventDefault()
     let token=token_genrator()
-    axios.delete(`https://greehorsebackend.herokuapp.com/deletefile/${id}`,{
+    axios.delete(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/deletefile/${id}`,{
         headers:{
             'x-access-token':token
         }
@@ -61,7 +61,7 @@ dowloadfile=(filename,user)=>(e)=>{
     e.preventDefault()
    
     const path=`${user}/${filename}`
-    Axios.get(`https://greehorsebackend.herokuapp.com/download/${path}`,{
+    Axios.get(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/download/${path}`,{
         headers:{
             'Access-Control-Allow-Origin':'*',
             'Access-Control-Expose-Headers': '*'

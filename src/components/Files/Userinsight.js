@@ -26,7 +26,7 @@ class Userinsight extends Component {
             this.getfile()
             this.getuser()
             let usertype=localStorage.getItem('Usertype')
-    this.setState({usertype:usertype})
+            this.setState({usertype:usertype})
         }
 
     }
@@ -34,7 +34,7 @@ class Userinsight extends Component {
         let body= JSON.stringify({
             date:this.state.date
         })
-        await Axios.post(`https://greehorsebackend.herokuapp.com/dateuser?userid=${this.state.userid}`,body,{
+        await Axios.post(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/dateuser?userid=${this.state.userid}`,body,{
             headers:{
                 'x-access-token':token_genrator(),
                 'Content-Type':'application/json'
@@ -48,7 +48,7 @@ class Userinsight extends Component {
         })
     }
     getuser=()=>{
-        Axios.get('https://greehorsebackend.herokuapp.com/getalluser',{
+        Axios.get('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/getalluser',{
             headers:{
                 'x-access-token':token_genrator()
             }

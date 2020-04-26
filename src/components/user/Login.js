@@ -40,7 +40,7 @@ class Login extends Component {
                 let username=values.email
                 let password=values.password
                 const auth=  btoa(username + ':' + password)
-                axios.get('https://greehorsebackend.herokuapp.com/login',{
+                axios.get('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/login',{
                     headers:{
                         'Authorization':`Basic ${auth}`,
                         "Content-Type": "application/json"
@@ -53,7 +53,7 @@ class Login extends Component {
                     console.log(res.data.filepath)
                     if(res.data.status === 'success'){
                         const path=res.data.filepath
-                        axios.get(`https://greehorsebackend.herokuapp.com/download/${path}`,{
+                        axios.get(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/download/${path}`,{
                             headers:{
                                 'Access-Control-Allow-Origin':'*',
                                 'Access-Control-Expose-Headers': '*'

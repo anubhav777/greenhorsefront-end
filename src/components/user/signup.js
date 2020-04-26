@@ -74,7 +74,7 @@ class signup extends Component {
             formdata.append('password',values.password)
             formdata.append('usertype','admin')
           console.log(JSON.stringify(values))
-          axios.post('https://greehorsebackend.herokuapp.com/signup',formdata, {
+          axios.post('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/signup',formdata, {
            
             headers: {
               
@@ -85,13 +85,13 @@ class signup extends Component {
           .then(res => {
             console.log(res.data)
             if (res.data.status === 'success'){
-             
+              show_noty('alert', 'please wait for a moment while your account is being verified')
               console.log('hi')
               let new_email=JSON.stringify({
                 'email':values.email
               })
            
-              axios.post('https://greehorsebackend.herokuapp.com/verification',new_email,{
+              axios.post('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/verification',new_email,{
                 headers: {
               
                   // 'Accept': 'application/json, text/plain, */*',

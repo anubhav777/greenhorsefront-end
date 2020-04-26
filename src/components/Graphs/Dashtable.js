@@ -33,7 +33,7 @@ class Dashtable extends Component {
     getdata=()=>{
           
         let datas='date'
-      axios.get(`https://greehorsebackend.herokuapp.com/graph?stats=${datas}`,{
+      axios.get(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/graph?stats=${datas}`,{
           headers:{
               'x-access-token':token_genrator(),
               'send_methods':this.state.call_method,
@@ -47,7 +47,7 @@ class Dashtable extends Component {
     }
     userfetcher=()=>{
      
-        axios.get('https://greehorsebackend.herokuapp.com/getalluser',{
+        axios.get('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/getalluser',{
             headers:{
                 'x-access-token':token_genrator()
             }
@@ -83,7 +83,7 @@ class Dashtable extends Component {
        
          let userid=Number(this.state.userid)
          let user_method=this.state.user_method
-         axios.get(`https://greehorsebackend.herokuapp.com/${user_method}?userid=${userid}`,{headers:{
+         axios.get(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/${user_method}?userid=${userid}`,{headers:{
 
          'x-access-token':token_genrator()
          }})

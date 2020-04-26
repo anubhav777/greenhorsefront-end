@@ -28,6 +28,8 @@ import '../node_modules/noty/lib/themes/mint.css'
 import Allquestion from './components/questions/Allquestion'
 import Dashtable from './components/Graphs/Dashtable';
 import Userinsight from './components/Files/Userinsight'
+
+
 class App extends Component {
   render() {
     return (
