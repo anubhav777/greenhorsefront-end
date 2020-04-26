@@ -24,7 +24,7 @@ class Profile extends Component {
     }
     getdata=(uid,token)=>{
         
-    axios.get(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/getuser/${uid}`,{
+    axios.get(`https://greehorsebackend.herokuapp.com/getuser/${uid}`,{
       headers:{
         'x-access-token':token
       }
@@ -38,7 +38,7 @@ class Profile extends Component {
     })
     }
     getquestion=(token)=>{
-        axios.get('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/getallquestion/overall',{
+        axios.get('https://greehorsebackend.herokuapp.com/getallquestion/overall',{
             headers:{
               'x-access-token':token
             }})
@@ -49,7 +49,7 @@ class Profile extends Component {
             })
     }
     getfile=(token)=>{
-        axios.get('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/getallfile/overall',{
+        axios.get('https://greehorsebackend.herokuapp.com/getallfile/overall',{
             headers:{
               'x-access-token':token
             }})

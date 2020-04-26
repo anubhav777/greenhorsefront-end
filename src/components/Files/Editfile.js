@@ -35,7 +35,7 @@ class Editfile extends Component {
     }
 
     datafetcher=()=>{
-        axios.get('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/getallfile',{
+        axios.get('https://greehorsebackend.herokuapp.com/getallfile',{
             headers:{
                 
                 'x-access-token':token_genrator()
@@ -60,7 +60,7 @@ class Editfile extends Component {
     }
     generatedata=(id)=>{
       
-      axios.get(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/getfile/${id}`,{
+      axios.get(`https://greehorsebackend.herokuapp.com/getfile/${id}`,{
           headers:{
               'Content-Type':'application/json',
               'x-access-token':token_genrator()
@@ -73,7 +73,7 @@ class Editfile extends Component {
     }
     userftecher=()=>{
        
-        axios.get('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/getalluser',{
+        axios.get('https://greehorsebackend.herokuapp.com/getalluser',{
             headers:{
                 
                 'x-access-token':token_genrator()
@@ -99,7 +99,7 @@ class Editfile extends Component {
         // }
         const newbla=JSON.stringify(this.state.bla)
         console.log(newbla)
-        axios.put(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/updatefile/${this.state.bla.id}`,this.state.bla,{
+        axios.put(`https://greehorsebackend.herokuapp.com/updatefile/${this.state.bla.id}`,this.state.bla,{
             headers:{
                 'Content-Type':'application/json',
                 'x-access-token':token_genrator()
@@ -129,7 +129,7 @@ class Editfile extends Component {
     delete=(id)=>(e)=>{
         e.preventDefault()
       
-        axios.delete(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/deletefile/${id}`,{
+        axios.delete(`https://greehorsebackend.herokuapp.com/deletefile/${id}`,{
             headers:{
                 'x-access-token':token_genrator()
             }

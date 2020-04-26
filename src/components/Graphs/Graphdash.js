@@ -50,7 +50,7 @@ class Graphdash extends Component {
       console.log(e.target.value)
       let new_date=e.target.value
       let token=localStorage.getItem('Token')
-      axios.get(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/graph?stats=date`,{
+      axios.get(`https://greehorsebackend.herokuapp.com/graph?stats=date`,{
         headers:{
           'curr_date':new_date,
           'x-access-token':token

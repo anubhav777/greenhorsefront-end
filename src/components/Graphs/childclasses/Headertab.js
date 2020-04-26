@@ -15,7 +15,7 @@ class Headertab extends Component {
 
    }
     getdata=()=>{
-        axios.get('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/graph',{
+        axios.get('https://greehorsebackend.herokuapp.com/graph',{
             headers:{
                 'x-access-token':this.props.token
             }

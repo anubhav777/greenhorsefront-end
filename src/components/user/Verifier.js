@@ -14,7 +14,7 @@ class Verifier extends Component {
         let new_split=url.split("=",2)
         let tok=new_split[1]
         console.log(tok)
-        Axios.get(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/confirmverification/${tok}`)
+        Axios.get(`https://greehorsebackend.herokuapp.com/confirmverification/${tok}`)
         .then(res=>{
             console.log(res.data)
             this.setState({redirect:true})

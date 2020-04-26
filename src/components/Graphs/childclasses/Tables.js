@@ -16,7 +16,7 @@ class Tables extends Component {
       }
     }
     getfile=(month)=>{
-        axios.get('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/getallfile',{
+        axios.get('https://greehorsebackend.herokuapp.com/getallfile',{
             headers:{
                 'x-access-token':this.props.token
             }
@@ -35,7 +35,7 @@ class Tables extends Component {
     }
 
     getquestion=()=>{
-        axios.get('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/getallquestion',{
+        axios.get('https://greehorsebackend.herokuapp.com/getallquestion',{
             headers:{
                 'x-access-token':this.props.token
             }

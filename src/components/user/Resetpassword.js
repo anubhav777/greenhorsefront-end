@@ -20,7 +20,7 @@ class Resetpassword extends Component {
                 let new_email=JSON.stringify({
                     'email':email
                 })
-                axios.post('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/resetpassword',new_email,{
+                axios.post('https://greehorsebackend.herokuapp.com/resetpassword',new_email,{
                     headers:{
                         'Content-Type':'application/json'
                     }

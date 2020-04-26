@@ -88,7 +88,7 @@ class Maingraph extends Component {
       getdata=()=>{
           
           let datas=this.state.url_method
-        axios.get(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/graph?stats=${datas}`,{
+        axios.get(`https://greehorsebackend.herokuapp.com/graph?stats=${datas}`,{
             headers:{
                 'x-access-token':this.props.token,
                 'send_methods':this.state.call_method,

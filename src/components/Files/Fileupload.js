@@ -43,7 +43,7 @@ uploadfile= async (e)=>{
     
     console.log(formdata)
     try{
-        await axios.post('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/upload',formdata,{
+        await axios.post('https://greehorsebackend.herokuapp.com/upload',formdata,{
             headers:{
                 'Content-Type':'multipart/form-data',
                 'x-access-token':token_genrator()

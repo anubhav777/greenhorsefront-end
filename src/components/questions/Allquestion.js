@@ -15,7 +15,7 @@ componentWillMount(){
     this.datafetcher()
 
   }
-    // fetch('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/tryuser')
+    // fetch('https://greehorsebackend.herokuapp.com/tryuser')
  
 
 
@@ -23,7 +23,7 @@ componentWillMount(){
 
 datafetcher=()=>{
     
-    axios.get('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/getallquestion',{
+    axios.get('https://greehorsebackend.herokuapp.com/getallquestion',{
         headers:{
             
             'x-access-token':token_genrator()
@@ -44,7 +44,7 @@ datafetcher=()=>{
 delete=(id)=>(e)=>{
     e.preventDefault()
     
-    axios.delete(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/deletequestion/${id}`,{
+    axios.delete(`https://greehorsebackend.herokuapp.com/deletequestion/${id}`,{
         headers:{
             'x-access-token':token_genrator()
         }

@@ -30,7 +30,7 @@ class Edituser extends Component {
         
         console.log(splitone)
         let token= token_genrator()
-        axios.get(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/getuser/${newid}`,{
+        axios.get(`https://greehorsebackend.herokuapp.com/getuser/${newid}`,{
             headers:{
                 'Content-Type':'application/json',
                 'x-access-token':token
@@ -69,7 +69,7 @@ class Edituser extends Component {
             "usertype":this.state.usertype,
           
         }
-        fetch(`http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/updateuser/${this.state.id}`, {
+        fetch(`https://greehorsebackend.herokuapp.com/updateuser/${this.state.id}`, {
             method: 'PUT',
             headers: {
               
