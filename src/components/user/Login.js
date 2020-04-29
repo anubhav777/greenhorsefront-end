@@ -82,7 +82,7 @@ class Login extends Component {
                 <div className="hold-transition login-page">
                 <div className="login-box">
                     <div className="login-logo">
-                    <b>Green</b>Horse
+                    <b>Arkoray</b>Content
                     </div>
                     {/* /.login-logo */}
                     <div className="card">

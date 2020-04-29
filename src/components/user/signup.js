@@ -129,7 +129,7 @@ class signup extends Component {
                    <div className="hold-transition register-page">
 <div className="register-box">
   <div className="register-logo">
-    <a href="../../index2.html"><b>Green</b>Horse</a>
+    <a href="../../index2.html"><b>Arkoray</b>Content</a>
   </div>
   <div className="card">
     <div className="card-body register-card-body">

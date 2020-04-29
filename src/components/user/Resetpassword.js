@@ -35,7 +35,7 @@ class Resetpassword extends Component {
 <div className="hold-transition login-page">
 <div className="login-box">
   <div className="login-logo">
-    <a href="../../index2.html"><b>Green</b>Horse</a>
+    <a href="../../index2.html"><b>Arkoray</b>Content</a>
   </div>
   {/* /.login-logo */}
   <div className="card">
