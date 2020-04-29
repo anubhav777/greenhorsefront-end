@@ -134,7 +134,7 @@ reset=(e)=>{
 
               </div>
               <div style={this.state.show ?{display:"inline"} : {display:"none"} }>
-                                     <h1 style={this.state.display ?{color:"red"} : {color:"green"} }>{this.state.linkname}</h1>
+                                     <h3 style={this.state.display ?{color:"red"} : {color:"green",border:'.2px solid green',padding:'10px'} }>{this.state.linkname}</h3>
                                      </div>
               {/* /.card-body */}
               <div className="card-footer">
