@@ -32,8 +32,7 @@ datafetcher=()=>{
     })
     
     .then((res) =>{
-        console.log(res.data)
-        
+       
         this.setState({bla:res.data.data})
         if (res.data.user==="admin"){
             this.setState({disp:true})
@@ -51,11 +50,11 @@ delete=(id)=>(e)=>{
     })
     .then(res =>{
       show_noty(res.data.status,res.data.noty)
-        console.log(res.data)
+     
         this.datafetcher()
        
     })
-    console.log(id)
+
 }
 render() {
     const customStyles = {

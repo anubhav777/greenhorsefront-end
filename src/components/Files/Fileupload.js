@@ -19,7 +19,6 @@ uploadstaus=(e)=>{
   if (e.target.files !== ""){
     this.setState({[e.target.name]:e.target.files,filedisplay:e.target.files[0].name,diplsy:true})
     
-    console.log(e.target.files.path)
   }
    
 }
@@ -39,9 +38,7 @@ uploadfile= async (e)=>{
         
     }
 
-    console.log(formdata.getAll('status'))
-    
-    console.log(formdata)
+ 
     try{
         await axios.post('https://greehorsebackend.herokuapp.com/upload',formdata,{
             headers:{
@@ -55,10 +52,10 @@ uploadfile= async (e)=>{
         })
         .then( res =>{
             show_noty(res.data.status,res.data.noty)
-            console.log(res.data)
+         
             let newwordcount=`Total: ${res.data.wordcount} Word Count`
             if (res.data.wordcount!== undefined){
-              console.log(res.data.wordcount)
+             
               this.setState({diplsy:false})
               this.setState({wordcount:newwordcount})
               setTimeout(()=>{this.setState({percent:0})},2000)
@@ -148,9 +145,7 @@ uploadfile= async (e)=>{
         );
     }
 }
-const col={
-  color:'green'
-}
+
 const ml={
   marginLeft:'20%'
 }

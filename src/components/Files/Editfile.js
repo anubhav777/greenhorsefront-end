@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import DataTable,{defaultThemes} from 'react-data-table-component';
-import styled from 'styled-components'
 import show_noty from '../Noty/Notify';
 import token_genrator from '../Miscallenous/Token';
 class Editfile extends Component {
@@ -20,11 +19,11 @@ class Editfile extends Component {
           let url=window.location.href
           let newsplit=url.split('=',2)
           let newid=Number(newsplit[1])
-          console.log('hi')
+          
          this.generatedata(newid)
         }
         else{
-          console.log('bye')
+          
         }
        
 
@@ -44,7 +43,7 @@ class Editfile extends Component {
         })
         
         .then(res =>{
-            console.log(res.data)
+           
             
             this.setState({alldata:res.data.data})
           
@@ -82,7 +81,7 @@ class Editfile extends Component {
         })
         
         .then(res =>{
-            console.log(res.data)
+           
             
             this.setState({user:res.data.data})
         })
@@ -97,8 +96,8 @@ class Editfile extends Component {
         //     "phone":this.state.phone,
         //     "usertype":this.state.usertype
         // }
-        const newbla=JSON.stringify(this.state.bla)
-        console.log(newbla)
+        // const newbla=JSON.stringify(this.state.bla)
+        
         axios.put(`https://greehorsebackend.herokuapp.com/updatefile/${this.state.bla.id}`,this.state.bla,{
             headers:{
                 'Content-Type':'application/json',
@@ -114,8 +113,8 @@ class Editfile extends Component {
             
          })
           .catch(error => {
-            
             console.log(error)
+            
           })
           
 
@@ -123,7 +122,7 @@ class Editfile extends Component {
     valuechange=(e)=>{
         let item = Object.assign({}, this.state.bla, {[e.target.name]: e.target.value});
         let bla = item;
-        console.log(item)
+        
         this.setState({bla: bla});       
     }
     delete=(id)=>(e)=>{
@@ -136,13 +135,13 @@ class Editfile extends Component {
         })
         .then(res =>{
           show_noty(res.data.status,res.data.noty)
-            console.log(res.data)
+            
             this.datafetcher()
         })
     }
     bhl=(e)=>{
         e.preventDefault()
-        console.log('hi')
+
     }
     render() {
       const pg=10
@@ -266,7 +265,7 @@ class Editfile extends Component {
                 <option>None</option>
                 <option selected={this.state.bla.status === 'none' ? true : false} value="none">On Hold</option>
                 <option  selected={this.state.bla.status === 'accepted' ? true : false} value='accepted'>Accepted</option>
-                <option selected  selected={this.state.bla.status === 'declined' ? true : false} value='declined'>Declined</option>
+                <option  selected={this.state.bla.status === 'declined' ? true : false} value='declined'>Declined</option>
               </select>
               </div>
               </div>

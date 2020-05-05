@@ -14,7 +14,7 @@ class Resetpassword extends Component {
                 .email("please provide valid email")
                 .required("please enter your email")
             })} onSubmit={(values,{resetForm})=>{
-                console.log(values)
+                
                 show_noty('alert','Please wait a moment while your gmail is being verified')
                 let email=values.email
                 let new_email=JSON.stringify({
@@ -27,7 +27,7 @@ class Resetpassword extends Component {
                 })
                 .then(res=>{
                   show_noty(res.data.status,res.data.noty)
-                    console.log(res.data)
+          
                 })
                 resetForm({})
             }}>

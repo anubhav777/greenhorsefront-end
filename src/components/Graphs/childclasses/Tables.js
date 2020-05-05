@@ -22,10 +22,10 @@ class Tables extends Component {
             }
         })
         .then(res =>{
-            console.log(res.data)
+            
             let new_array=res.data.data
             let updated_array=new_array.splice((new_array.length-5),new_array.length)
-            console.log(updated_array)
+           
             let bg=this.monthmodifier(updated_array)
             
             this.setState({files:bg})
@@ -41,11 +41,11 @@ class Tables extends Component {
             }
         })
         .then(res =>{
-            console.log(res.data)
+            
             let new_array=res.data.data
             let updated_array=new_array.splice((new_array.length-7),new_array.length)
             let bg=this.monthmodifier(updated_array)
-            console.log(updated_array)
+            
             this.setState({question:bg})
 
         })
@@ -136,10 +136,10 @@ class Tables extends Component {
             return(
                 <li className="item" key={i}>
                 <div className="product-img">
-                  <img src={process.env.PUBLIC_URL +"/word.jpg"} alt="Product Image" className="img-size-50" />
+                  <img src={process.env.PUBLIC_URL +"/word.jpg"} alt='wrd'  className="img-size-50" />
                 </div>
                 <div className="product-info">
-                  <a href="javascript:void(0)" className="product-title">{val.filename}
+                  <a  className="product-title">{val.filename}
             <span className="badge badge-warning float-right">{val.date}</span></a>
                   <span className="product-description">
                    {val.user}
@@ -157,7 +157,7 @@ class Tables extends Component {
   </div>
   {/* /.card-body */}
   <div className="card-footer text-center">
-    <a href="javascript:void(0)" className="uppercase">View All Products</a>
+    <a  className="uppercase">View All Products</a>
   </div>
   {/* /.card-footer */}
 </div>

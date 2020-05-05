@@ -17,8 +17,8 @@ class Uploadquestion extends Component {
 reset=(e)=>{
     // e.preventDefault()
    
-    console.log('hi')
-    this.setState({show:false,linkname:"",display:true,verifier:true,process:"Check",show:false})
+  
+    this.setState({show:false,linkname:"",display:true,verifier:true,process:"Check"})
     document.getElementById('form_ik').reset()
     
 }
@@ -30,8 +30,8 @@ reset=(e)=>{
             .max(150,"link seems to be too long")
             .required("Please enter link")
         })} onSubmit={(values,{resetForm})=>{
-            console.log(this.state)
-            let v= this.initialValues
+     
+          
             let token= token_genrator()
             if(this.state.verifier === true){
             
@@ -47,7 +47,7 @@ reset=(e)=>{
             .then(re => re.json())
             .then(res =>{
                 this.setState({linkname:values.linkname})
-                console.log(res)
+                
                 this.setState({show:true})
 
                 if(res.status === 'alert'){
@@ -64,7 +64,7 @@ reset=(e)=>{
             })
         }
         else{
-            console.log('two')
+           
             values.process="Add"
             setTimeout(()=>{fetch('https://greehorsebackend.herokuapp.com/addlink',{
                method:'POST',
@@ -77,7 +77,7 @@ reset=(e)=>{
            })
            .then(re => re.json())
            .then(res => {
-               console.log(res)
+               
                values.process='Check'
             //  document.getElementById('form_ik').reset()
             show_noty(res.status,res.noty)
@@ -85,8 +85,7 @@ reset=(e)=>{
            })
           
                        
-          console.log(v)
-           console.log(values)
+         
         
        },500) 
            

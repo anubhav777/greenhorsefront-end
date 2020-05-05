@@ -9,7 +9,7 @@ class Dashboard extends Component {
   }
     UNSAFE_componentWillMount(){
       if(token_genrator()){
-        console.log(token_genrator())
+        
         let usertype=localStorage.getItem('Usertype')
         this.setState({usertype:usertype})
       }

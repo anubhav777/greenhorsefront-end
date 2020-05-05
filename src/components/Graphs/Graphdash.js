@@ -47,7 +47,7 @@ class Graphdash extends Component {
      
     }
     updateval=(e)=>{
-      console.log(e.target.value)
+    
       let new_date=e.target.value
       let token=localStorage.getItem('Token')
       axios.get(`https://greehorsebackend.herokuapp.com/graph?stats=date`,{
@@ -57,11 +57,11 @@ class Graphdash extends Component {
         }
       })
       .then(res =>{
-        console.log(res.data.file)
+      
         let new_file=res.data.file.map((val)=>{
           return val.total
         })
-        console.log(new_file)
+     
         let series=[...this.state.series]
         series[0]={name: "File",data:new_file}
         this.setState({series})

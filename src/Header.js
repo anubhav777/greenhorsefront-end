@@ -7,7 +7,7 @@ class Header extends Component {
   {/* Left navbar links */}
   <ul className="navbar-nav">
     <li className="nav-item">
-      <a className="nav-link" data-widget="pushmenu" href="#"><i className="fas fa-bars" /></a>
+      <span className="nav-link" data-widget="pushmenu" href="#"><i className="fas fa-bars" /></span>
     </li>
     <li className="nav-item d-none d-sm-inline-block">
       <a href="/home" className="nav-link">Home</a>

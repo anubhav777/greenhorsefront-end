@@ -73,7 +73,7 @@ class Maingraph extends Component {
         let date= new Date()
         let cuurent_month=('0' + (date.getMonth()+1)).slice(-2)
         let current_date= date.getFullYear() + '-'+ cuurent_month + '-'+('0' + date.getDate()).slice(-2)
-        console.log(current_date)
+        
        
        
         this.setState({cuurent_month:cuurent_month,current_date:current_date})
@@ -101,10 +101,10 @@ class Maingraph extends Component {
         .then(res =>{
             // console.log(res.data+[.new_stats])
           let yaxis_title=null
-          let spliced_array=null
+          
           if(res.data.data.length >7){
               res.data.data=[...res.data.data].splice(0,7)
-              console.log(res.data.data)
+              
           }
             const new_file=res.data.data.map((val)=>{
                 return val.total
@@ -119,7 +119,7 @@ class Maingraph extends Component {
                 return val.y_axis
             })
             
-            console.log(res.data)
+            
             let new_state=this.state.series
             const new_obj=update(new_state,{[0]:{data:{$set:new_file}}})
             let new_options=this.state.options
@@ -146,7 +146,7 @@ class Maingraph extends Component {
       updatedate=async (e)=>{
         // this.setState({current_date:this.formatIsoDate(e),url_method:'date'},()=>{
         //   this.getdata()
-        console.log(e.target.name)
+        
         this.setState({[e.target.name]:e.target.value})
         
        if(e.target.name === 'current_date'){
@@ -301,14 +301,16 @@ class Maingraph extends Component {
             if(i <=6){
               return(
               
-                <tr>
+                <tr key={i}>
                   <td>{i+1}</td>
                     <td>{val.y_axis}</td>
               <td>{val.date}</td>
               <td>{val.total}</td>
                 </tr>
+              
               )
             }
+            return val
             
             
          
@@ -365,7 +367,5 @@ const disp={
     width:'300px',height:'100px',marginLeft:'-100px'
 
 }
-const frm={
-  position:'absolute'
-}
+
 export default Maingraph;

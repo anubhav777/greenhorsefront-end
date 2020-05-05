@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import {Formik} from 'formik'
 import show_noty from '../../Noty/Notify';
 import token_genrator from '../../Miscallenous/Token';
 
@@ -32,7 +31,7 @@ class Userdetail extends Component {
         let splitone=url.split("=",2)
         let newid=splitone[1]
         
-        console.log(splitone)
+        
         let token= token_genrator()
         axios.get(`https://greehorsebackend.herokuapp.com/getuser/${newid}`,{
             headers:{
@@ -42,7 +41,7 @@ class Userdetail extends Component {
             }
         })
         .then(res =>{
-            console.log(res.data)
+           
             let newres=res.data
             let keys=Object.keys(newres)
             let values=Object.values(newres)
@@ -88,7 +87,7 @@ class Userdetail extends Component {
           })
          .then(re => re.json())
          .then(res =>{
-             console.log(res)
+            
              show_noty(res.status,res.noty)
              if(res.status === "success"){
                  this.setState({redirect:true})
@@ -138,14 +137,14 @@ class Userdetail extends Component {
                                         <div className="form-group row">
                                         <label htmlFor="inputName2" className="col-sm-2 col-form-label">Location</label>
                                         <div className="col-sm-10">
-                                            <input type="text" className="form-control" id="inputName2" placeholder="Address" name="address" id="address" value={this.state.address}
+                                            <input type="text" className="form-control" id="inputName2" placeholder="Address" name="address"  value={this.state.address}
                                       onChange={this.valuechange}/>
                                         </div>
                                         </div>
                                         <div className="form-group row">
                                         <label htmlFor="inputExperience" className="col-sm-2 col-form-label">Phone</label>
                                         <div className="col-sm-10">
-                                            <textarea className="form-control" id="inputExperience" placeholder="Phone Number" name="phone" id="phone" value={this.state.phone}
+                                            <textarea className="form-control" id="inputExperience" placeholder="Phone Number" name="phone"  value={this.state.phone}
                                       onChange={this.valuechange}/>
                                         </div>
                                         </div>
@@ -154,7 +153,7 @@ class Userdetail extends Component {
                                         <div className="offset-sm-2 col-sm-10">
                                             <div className="checkbox">
                                             <label>
-                                                <input type="checkbox" onChange={this.disable_func}/> I agree to the <a href="#">terms and conditions</a>
+                                                <input type="checkbox" onChange={this.disable_func}/> I agree to the terms and conditions
                                             </label>
                                             </div>
                                         </div>

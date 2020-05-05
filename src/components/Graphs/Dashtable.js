@@ -19,7 +19,7 @@ class Dashtable extends Component {
         let token=localStorage.getItem('Token')
         let cuurent_month=('0' + (date.getMonth()+1)).slice(-2)
         let current_date= date.getFullYear() + '-'+ cuurent_month + '-'+('0' + date.getDate()).slice(-2)
-        this.setState({token:token})
+        this.setState({token:token,current_date:current_date})
        
 
     }
@@ -54,7 +54,7 @@ class Dashtable extends Component {
         })
         
         .then(res =>{
-            console.log(res.data)
+        
             
             this.setState({allusers:res.data.data})
         })
@@ -94,7 +94,7 @@ class Dashtable extends Component {
 
      }
      updatedate=async (e)=>{
-      console.log(e.target.name)
+      
       this.setState({[e.target.name]:e.target.value},()=>{
         this.getdata()
       })

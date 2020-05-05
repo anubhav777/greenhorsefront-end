@@ -7,6 +7,7 @@ class Menu extends Component {
   state={
     fullname:"",
     usertype:'',
+    picpath:'',
     redirct:false
   }
   componentWillMount(){
@@ -14,11 +15,11 @@ class Menu extends Component {
   }
   componentDidMount(){
     if(token_genrator()){
-      var dataImage = localStorage.getItem('Profile');
-      let bannerImg = document.getElementById('tableBanner');
+      // var dataImage = localStorage.getItem('Profile');
+      // let bannerImg = document.getElementById('tableBanner');
       let usertype=localStorage.getItem('Usertype')
       this.setState({usertype:usertype})
-      bannerImg.src = "data:image/png;base64," + dataImage;
+      // bannerImg.src = "data:image/png;base64," + dataImage;
        
       let uid=localStorage.getItem('Dejavu')
       this.getuser(uid)
@@ -37,6 +38,7 @@ getuser=async (uid)=>{
     .then(res=>{
       console.log(res.data)
       this.setState({fullname:res.data.fullname})
+      this.setState({picpath:res.data.picturepath})
     })
 }
 logout=()=>{
@@ -56,7 +58,7 @@ logout=()=>{
 <aside className="main-sidebar sidebar-dark-primary elevation-4">
 
   <Link  to="index3.html" className="brand-link">
-    <img src={process.env.PUBLIC_URL + "/arkoray-logo.png"} className="brand-image img-circle elevation-3" style={{opacity: '.8'}} />
+    <img src={process.env.PUBLIC_URL + "/arkoray-logo.png"} alt='logo' className="brand-image img-circle elevation-3" style={{opacity: '.8'}} />
     <span className="brand-text font-weight-light">Arkoray</span>
   </Link>  
   {/* Sidebar */}
@@ -64,7 +66,7 @@ logout=()=>{
     {/* Sidebar user panel (optional) */}
     <div className="user-panel mt-3 pb-3 mb-3 d-flex">
       <div className="image">
-        <img src="" id="tableBanner" style={imgwidth} className="img-circle elevation-2"  />
+        <img src={`https://greenhorse.s3.amazonaws.com/${this.state.picpath}`} alt='profpic' id="tableBanner" style={imgwidth} className="img-circle elevation-2"  />
       </div>
       <div className="info">
         <Link   className="d-block">{this.state.fullname}</Link>  

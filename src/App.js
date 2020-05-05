@@ -15,19 +15,16 @@ import Editfile from './components/Files/Editfile'
 import Resetpassword from './components/user/Resetpassword'
 import Confirmpassword from './components/user/Confirmpassword'
 import Verifier from './components/user/Verifier'
-import Try from './components/questions/Try'
-import Tryimage from './components/user/Tryimage'
-import Trypicture from './components/user/Trypicture'
+
 import Profile from './components/user/Profile'
-import Tryfile from './components/Files/Tryfile'
-import Tryalluser from './components/user/Tryalluser'
+
 import Dashboard from './components/Graphs/Dashboard'
-import Newcalendar from './components/Graphs/Newcalendar'
+
 import '../node_modules/noty/lib/noty.css'
 import '../node_modules/noty/lib/themes/mint.css'
 import Allquestion from './components/questions/Allquestion'
 import Dashtable from './components/Graphs/Dashtable';
-import Userinsight from './components/Files/Userinsight'
+// import Userinsight from './components/Files/Userinsight'
 
 
 class App extends Component {
@@ -48,10 +45,7 @@ class App extends Component {
           <Route path='/reset'><Resetpassword/></Route>
           <Route path='/confirm'><Confirmpassword/></Route>
           <Route path='/verifier'><Verifier/></Route>
-          <Route path='/tryimg'><Tryimage/></Route>
-          <Route path='/pics'><Trypicture/></Route>
-          <Route path='/try'><Tryalluser/></Route>
-          <Route path='/calendar'><Newcalendar/></Route>
+          
 
           <Route path='/allquestion' render={(props)=>(
             <React.Fragment>
@@ -120,16 +114,6 @@ class App extends Component {
           )}>
 
           </Route>
-          <Route exact path='/try' render={(props)=>(
-            <React.Fragment>
-              <Header/>
-              <Menu/>
-              <Try/>
-            
-            </React.Fragment>
-          )}>
-
-          </Route>
           <Route exact path='/profile' render={(props)=>(
             <React.Fragment>
               <Header/>
@@ -137,16 +121,6 @@ class App extends Component {
                 <Profile/>
               
             
-            </React.Fragment>
-          )}>
-
-          </Route>
-          <Route exact path='/tryfile' render={(props)=>(
-            <React.Fragment>
-              <Header/>
-              <Menu/>
-              <Tryfile/>
-             
             </React.Fragment>
           )}>
 
@@ -171,7 +145,7 @@ class App extends Component {
           )}>
 
           </Route>
-          <Route exact path ='/userinsight' render={(props)=>(
+          {/* <Route exact path ='/userinsight' render={(props)=>(
             <React.Fragment>
               <Header/>
               <Menu/>
@@ -180,7 +154,7 @@ class App extends Component {
             </React.Fragment>
           )}>
 
-          </Route>
+          </Route> */}
        
         </Switch>
         

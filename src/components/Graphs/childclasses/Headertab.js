@@ -21,7 +21,7 @@ class Headertab extends Component {
             }
         })
         .then(res=>{
-            console.log(res.data)
+            
             let newtarget=(res.data.loginneduser * 60)
             let target_complete=Math.round(((res.data.files/newtarget) * 100))
             this.setState({data:res.data,target:target_complete})

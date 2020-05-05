@@ -6,15 +6,12 @@ class Adminprofile extends Component {
         obj:{}
     }
     componentWillMount(){
-        console.log(this.props.userdata)
+       
         this.setState({obj:this.props.userdata})
       
     }
     componentDidMount(){
-        let bann = document.getElementById('tableB');
-        let imgsrc=this.props.imgsrc
-        console.log(this.props.imgsrc)
-        bann.src = imgsrc ;
+     
     }
     
     render() {
@@ -24,7 +21,7 @@ class Adminprofile extends Component {
                             <div className="card card-primary card-outline">
                                 <div className="card-body box-profile">
                                 <div className="text-center">
-                                <img id="tableB" src='' style={imgwdth} classname="profile-user-img img-fluid img-circle"  />
+                                <img id="tableB" alt="pic" src={`https://greenhorse.s3.amazonaws.com/${this.props.picpath}`} style={imgwdth} classname="profile-user-img img-fluid img-circle" />
 
                                 </div>
                                 <h3 className="profile-username text-center">{this.props.userdata.fullname}</h3>
@@ -61,9 +58,7 @@ class Adminprofile extends Component {
 }
 Adminprofile.propTypes={
     userdata:propTypes.object.isRequired,
-    question:propTypes.number.isRequired,
-    file:propTypes.number.isRequired,
-    imgsrc:propTypes.string.isRequired
+    picpath:propTypes.string.isRequired
 }
 const imgwdth={
     width:'128px',

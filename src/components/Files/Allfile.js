@@ -35,7 +35,7 @@ datafetcher=()=>{
     })
     
     .then(res =>{
-        console.log(res.data)
+        
         this.setState({bla:res.data.data})
         if (res.data.user==="admin"){
             this.setState({disp:true})
@@ -53,7 +53,7 @@ delete=(id)=>(e)=>{
     })
     .then(res =>{
       show_noty(res.data.status,res.data.noty)
-        console.log(res.data)
+        
         this.datafetcher()
     })
 }
@@ -76,7 +76,7 @@ dowloadfile=(filename,user)=>(e)=>{
         let filename=file_split[1]
         let filename_split=filename.split("/",2)
         let new_filename=filename_split[1]
-        console.log(new_filename)
+        
         fileDownload(response.data,new_filename)
     })
     

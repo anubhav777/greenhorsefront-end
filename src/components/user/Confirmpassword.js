@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Formik,ErrorMessage, validateYupSchema} from 'formik'
+import {Formik,ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import Axios from 'axios';
 import show_noty from '../Noty/Notify';
@@ -26,11 +26,11 @@ class Confirmpassword extends Component {
                 .matches(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}/,
                 "Must Contain 8 Characters,should start with alphabet and contain One Number and One special case Character"),
             })} onSubmit={(values)=>{
-                console.log(values)
+              
                 let url=window.location.href
                 let newsplit=url.split("=",2)
                 let token=newsplit[1]
-                console.log(token)
+              
                 const new_data=JSON.stringify({
                     password:values.password,
                     confirmpassword:values.confirmpassword
@@ -42,7 +42,7 @@ class Confirmpassword extends Component {
                 })
                 .then(res=>{
                   show_noty(res.data.status,res.data.noty)
-                    console.log(res.data)
+                   
                     if(res.data.status === 'alert'){
                       setTimeout(()=>{this.setState({redirect:true})},500)
                     }

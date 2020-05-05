@@ -41,7 +41,7 @@ class Userinsight extends Component {
             }
         })
         .then(res =>{
-            console.log(res.data)
+         
             this.setState({data:res.data.data},()=>{
                 this.useridentifier(this.state.userid)
             })
@@ -55,7 +55,7 @@ class Userinsight extends Component {
         })
         
         .then(res =>{
-            console.log(res.data)
+          
             
             this.setState({users:res.data.data})
         })
@@ -85,7 +85,7 @@ class Userinsight extends Component {
             let new_arr=''
             let new_dat=this.state.users.filter((val)=>{
                 
-                if(val.id == id){
+                if(val.id === id){
                     new_arr=val.fullname
                     
                 }

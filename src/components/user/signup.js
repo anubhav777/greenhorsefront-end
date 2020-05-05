@@ -63,7 +63,7 @@ class signup extends Component {
 
         
            })} onSubmit={(values)=>{
-            console.log(values)
+         
             let formdata=new FormData()
 
             formdata.append('file',this.state.filename[0])
@@ -73,7 +73,7 @@ class signup extends Component {
             formdata.append('phone',values.phone)
             formdata.append('password',values.password)
             formdata.append('usertype','admin')
-          console.log(JSON.stringify(values))
+         
           axios.post('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/signup',formdata, {
            
             headers: {
@@ -83,10 +83,10 @@ class signup extends Component {
               
                         }})
           .then(res => {
-            console.log(res.data)
+         
             if (res.data.status === 'success'){
               show_noty('alert', 'please wait for a moment while your account is being verified')
-              console.log('hi')
+           
               let new_email=JSON.stringify({
                 'email':values.email
               })
@@ -101,7 +101,7 @@ class signup extends Component {
               })
               .then(res =>{
                 show_noty(res.data.status,res.data.noty)
-                console.log(res.data)
+              
                 if (res.data.status === 'alert'){
                 this.setState({redirect:true})
                 }

@@ -10,9 +10,10 @@ class Profile extends Component {
         question:null,
         file:null,
         imgsrc:"",
+        picpath:"",
         admin:true
     }
-    componentWillMount(){
+    componentDidMount(){
         if(token_genrator()){
         let uid=localStorage.getItem('Dejavu')
         let token=token_genrator()
@@ -30,8 +31,8 @@ class Profile extends Component {
       }
     })
     .then(res=>{
-      console.log(res.data.usertype)
-      this.setState({userdata:res.data})
+ 
+      this.setState({userdata:res.data,picpath:res.data.picturepath})
       if(res.data.usertype === 'admin'){
           this.setState({admin:true})
       }
@@ -43,7 +44,7 @@ class Profile extends Component {
               'x-access-token':token
             }})
             .then(res=>{
-                console.log(res.data)
+               
                 let new_question = res.data.data.length
                 this.setState({question:new_question})
             })
@@ -54,7 +55,7 @@ class Profile extends Component {
               'x-access-token':token
             }})
             .then(res=>{
-                console.log(res.data)
+          
                 let new_question = res.data.data.length
                 this.setState({file:new_question})
             })
@@ -77,13 +78,13 @@ class Profile extends Component {
                             </div>
                             
                         </div>
-                        </div>{/* /.container-fluid */}
+                        </div>
                     </section>
-                    {/* Main content */}
+
                     <section className="content">
                         <div className="container-fluid">
                         <div className="row">
-                        {this.state.admin ?<Adminprofile  userdata={this.state.userdata} imgsrc={this.state.imgsrc}/>:<Userprofile   userdata={this.state.userdata} file={this.state.file} question={this.state.question} imgsrc={this.state.imgsrc}/>
+                        {this.state.admin ?<Adminprofile  userdata={this.state.userdata} picpath={this.state.picpath}/>:<Userprofile   userdata={this.state.userdata} file={this.state.file} question={this.state.question} picpath={this.state.picpath}/>
                             }
                             
                            
@@ -91,12 +92,12 @@ class Profile extends Component {
                            
                             <Userdetail/>
 
-                            {/* /.col */}
+                           
                         </div>
-                        {/* /.row */}
-                        </div>{/* /.container-fluid */}
+                    
+                        </div>
                     </section>
-                    {/* /.content */}
+                   
                     </div>
 
         );

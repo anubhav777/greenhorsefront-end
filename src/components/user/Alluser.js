@@ -24,7 +24,7 @@ datafetcher=()=>{
     })
     
     .then(res =>{
-        console.log(res.data)
+       
         
         this.setState({bla:res.data.data})
         if (res.data.user==="admin"){
@@ -42,7 +42,7 @@ delete=(id)=>(e)=>{
     })
     .then(res =>{
       show_noty(res.data.status,res.data.noty)
-        console.log(res.data)
+       
         this.datafetcher()
     })
 }

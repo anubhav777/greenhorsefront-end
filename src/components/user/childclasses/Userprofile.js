@@ -6,15 +6,12 @@ class Userprofile extends Component {
         obj:{}
     }
     componentWillMount(){
-        console.log(this.props.userdata)
+        
         this.setState({obj:this.props.userdata})
       
     }
     componentDidMount(){
-        let bannerg = document.getElementById('tableBan');
-        let imgsrc=this.props.imgsrc
-        console.log(this.props.imgsrc)
-        bannerg.src = imgsrc ;
+       
     }
     render() {
         return (
@@ -23,17 +20,17 @@ class Userprofile extends Component {
                             <div className="card card-primary card-outline">
                                 <div className="card-body box-profile">
                                 <div className="text-center">
-                                    <img id="tableBan" src='' style={imgwdth} classname="profile-user-img img-fluid img-circle"  />
+                                    <img src={`https://greenhorse.s3.amazonaws.com/${this.props.picpath}`} alt='progpic' style={imgwdth} classname="profile-user-img img-fluid img-circle"  />
 
                                 </div>
                                 <h3 className="profile-username text-center">{this.props.userdata.fullname}</h3>
                                 <p className="text-muted text-center">{this.props.userdata.usertype}</p>
                                 <ul className="list-group list-group-unbordered mb-3">
                                     <li className="list-group-item">
-        <b>Questions Uploaded</b> <a className="float-right">{this.props.question}</a>
+        <b>Questions Uploaded</b> <span className="float-right">{this.props.question}</span>
                                     </li>
                                     <li className="list-group-item">
-        <b>Files Uploaded</b> <a className="float-right">{this.props.file}</a>
+        <b>Files Uploaded</b> <span className="float-right">{this.props.file}</span>
                                     </li>
                                 </ul>
                                
