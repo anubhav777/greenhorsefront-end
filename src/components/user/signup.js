@@ -74,7 +74,7 @@ class signup extends Component {
             formdata.append('password',values.password)
             formdata.append('usertype','admin')
          
-          axios.post('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/signup',formdata, {
+          axios.post('https://greehorsebackend.herokuapp.com/signup',formdata, {
            
             headers: {
               
@@ -91,7 +91,7 @@ class signup extends Component {
                 'email':values.email
               })
            
-              axios.post('http://greenhorsebackend.eba-6m8y2epd.us-west-2.elasticbeanstalk.com/verification',new_email,{
+              axios.post('https://greehorsebackend.herokuapp.com/verification',new_email,{
                 headers: {
               
                   // 'Accept': 'application/json, text/plain, */*',
