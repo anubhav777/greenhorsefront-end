@@ -72,7 +72,7 @@ class signup extends Component {
             formdata.append('address',values.address)
             formdata.append('phone',values.phone)
             formdata.append('password',values.password)
-            formdata.append('usertype','admin')
+            formdata.append('usertype','staff')
          
           axios.post('https://greehorsebackend.herokuapp.com/signup',formdata, {
            
@@ -90,7 +90,7 @@ class signup extends Component {
               let new_email=JSON.stringify({
                 'email':values.email
               })
-           
+              console.log(new_email)
               axios.post('https://greehorsebackend.herokuapp.com/verification',new_email,{
                 headers: {
               
